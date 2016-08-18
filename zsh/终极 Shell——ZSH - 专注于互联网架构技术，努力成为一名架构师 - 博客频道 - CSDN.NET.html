@@ -1,0 +1,1734 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0054)http://blog.csdn.net/iloveyin/article/details/49522449 -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">   
+   
+
+    <script type="text/javascript" src="./终极 Shell——ZSH - 专注于互联网架构技术，努力成为一名架构师 - 博客频道 - CSDN.NET_files/tracking.js" charset="utf-8"></script><style type="text/css"></style>  
+
+    <script type="text/javascript">
+        var protocol = window.location.protocol;
+        document.write('<script type="text/javascript" src="' + protocol + '//csdnimg.cn/pubfooter/js/repoAddr2.js?v=' + Math.random() + '"></' + 'script>');
+    </script><script type="text/javascript" src="./终极 Shell——ZSH - 专注于互联网架构技术，努力成为一名架构师 - 博客频道 - CSDN.NET_files/repoAddr2.js"></script>
+
+  
+ <meta http-equiv="Cache-Control" content="no-siteapp"><link rel="alternate" media="handheld" href="http://blog.csdn.net/iloveyin/article/details/49522449#">
+
+    <title>终极 Shell——ZSH - 专注于互联网架构技术，努力成为一名架构师
+        - 博客频道 - CSDN.NET</title>
+    
+    <meta name="description" content="1.java中如何将string 转化成longlong l = Long.parseLong([String]); 或 long l = Long.parseLong([String],[int radix]); long l = Long.valueOf(123).longValue();2.Long.ValueOf(String)与Long.parseLo">
+    <script src="./终极 Shell——ZSH - 专注于互联网架构技术，努力成为一名架构师 - 博客频道 - CSDN.NET_files/jquery.js" type="text/javascript"></script>
+      <script type="text/javascript" src="./终极 Shell——ZSH - 专注于互联网架构技术，努力成为一名架构师 - 博客频道 - CSDN.NET_files/jquery-version.js"></script>
+    <script type="text/javascript" src="http://static.blog.csdn.net/scripts/ad.js?v=1.1"></script>
+        <!--new top-->
+       
+        <link rel="stylesheet" href="./终极 Shell——ZSH - 专注于互联网架构技术，努力成为一名架构师 - 博客频道 - CSDN.NET_files/index.css">
+        <!--new top-->
+    
+      <!-- ad begin -->
+         <script language="javascript" type="text/javascript" src="http://ads.csdn.net/js/tracking.js"></script>
+    <!-- ad end-->
+
+    <link rel="Stylesheet" type="text/css" href="./终极 Shell——ZSH - 专注于互联网架构技术，努力成为一名架构师 - 博客频道 - CSDN.NET_files/style.css">
+    <link id="RSSLink" title="RSS" type="application/rss+xml" rel="alternate" href="http://blog.csdn.net/iloveyin/rss/list">
+    <link rel="shortcut icon" href="http://c.csdnimg.cn/public/favicon.ico">
+    <link type="text/css" rel="stylesheet" href="./终极 Shell——ZSH - 专注于互联网架构技术，努力成为一名架构师 - 博客频道 - CSDN.NET_files/blue_green.css">
+ 
+
+
+<script src="./终极 Shell——ZSH - 专注于互联网架构技术，努力成为一名架构师 - 博客频道 - CSDN.NET_files/share.js"></script><link rel="stylesheet" type="text/css" href="./终极 Shell——ZSH - 专注于互联网架构技术，努力成为一名架构师 - 博客频道 - CSDN.NET_files/job_reco.css"><style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Hover_Arrow {position: absolute; width: 15px; height: 11px; cursor: pointer}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 5px 0px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px; -khtml-border-radius: 5px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 1px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; color: #666666}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: .7em}
+.MathJax_MenuRadioCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuLabel {padding: 1px 2em 3px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #DDDDDD; margin: 4px 3px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: #606872; color: white}
+.MathJax_Menu_Close {position: absolute; width: 31px; height: 31px; top: -15px; left: -15px}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><link href="./终极 Shell——ZSH - 专注于互联网架构技术，努力成为一名架构师 - 博客频道 - CSDN.NET_files/bdsstyle.css" rel="stylesheet" type="text/css"><link rel="stylesheet" type="text/css" href="./终极 Shell——ZSH - 专注于互联网架构技术，努力成为一名架构师 - 博客频道 - CSDN.NET_files/style(1).css"><link rel="stylesheet" type="text/css" href="./终极 Shell——ZSH - 专注于互联网架构技术，努力成为一名架构师 - 博客频道 - CSDN.NET_files/style(2).css"><script src="./终极 Shell——ZSH - 专注于互联网架构技术，努力成为一名架构师 - 博客频道 - CSDN.NET_files/logger.js"></script><link rel="stylesheet" href="./终极 Shell——ZSH - 专注于互联网架构技术，努力成为一名架构师 - 博客频道 - CSDN.NET_files/share_style0_16.css"><style type="text/css">.MathJax_Display {text-align: center; margin: 1em 0em; position: relative; display: block!important; text-indent: 0; max-width: none; max-height: none; min-width: 0; min-height: 0; width: 100%}
+.MathJax .merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MathJax .MJX-monospace {font-family: monospace}
+.MathJax .MJX-sans-serif {font-family: sans-serif}
+#MathJax_Tooltip {background-color: InfoBackground; color: InfoText; border: 1px solid black; box-shadow: 2px 2px 5px #AAAAAA; -webkit-box-shadow: 2px 2px 5px #AAAAAA; -moz-box-shadow: 2px 2px 5px #AAAAAA; -khtml-box-shadow: 2px 2px 5px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true'); padding: 3px 4px; z-index: 401; position: absolute; left: 0; top: 0; width: auto; height: auto; display: none}
+.MathJax {display: inline; font-style: normal; font-weight: normal; line-height: normal; font-size: 100%; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; padding: 0; margin: 0}
+.MathJax img, .MathJax nobr, .MathJax a {border: 0; padding: 0; margin: 0; max-width: none; max-height: none; min-width: 0; min-height: 0; vertical-align: 0; line-height: normal; text-decoration: none}
+img.MathJax_strut {border: 0!important; padding: 0!important; margin: 0!important; vertical-align: 0!important}
+.MathJax span {display: inline; position: static; border: 0; padding: 0; margin: 0; vertical-align: 0; line-height: normal; text-decoration: none}
+.MathJax nobr {white-space: nowrap!important}
+.MathJax img {display: inline!important; float: none!important}
+.MathJax * {transition: none; -webkit-transition: none; -moz-transition: none; -ms-transition: none; -o-transition: none}
+.MathJax_Processing {visibility: hidden; position: fixed; width: 0; height: 0; overflow: hidden}
+.MathJax_Processed {display: none!important}
+.MathJax_ExBox {display: block!important; overflow: hidden; width: 1px; height: 60ex; min-height: 0; max-height: none}
+.MathJax .MathJax_EmBox {display: block!important; overflow: hidden; width: 1px; height: 60em; min-height: 0; max-height: none}
+.MathJax .MathJax_HitBox {cursor: text; background: white; opacity: 0; filter: alpha(opacity=0)}
+.MathJax .MathJax_HitBox * {filter: none; opacity: 1; background: transparent}
+#MathJax_Tooltip * {filter: none; opacity: 1; background: transparent}
+@font-face {font-family: MathJax_Blank; src: url('about:blank')}
+.MathJax .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style></head>
+<body><div style="visibility: hidden; overflow: hidden; position: absolute; top: 0px; height: 1px; width: auto; padding: 0px; border: 0px; margin: 0px; text-align: left; text-indent: 0px; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal;"><div id="MathJax_Hidden"></div></div><div id="MathJax_Message" style="display: none;"></div><iframe frameborder="0" style="display: none;" src="./终极 Shell——ZSH - 专注于互联网架构技术，努力成为一名架构师 - 博客频道 - CSDN.NET_files/saved_resource.html"></iframe>
+    <!-- 广告位开始 -->
+        <ins data-revive-zoneid="149" data-revive-id="8c38e720de1c90a6f6ff52f3f89c4d57"></ins>
+    <!-- 广告位结束 -->
+
+    
+   
+      <!--new top-->
+    <script id="toolbar-tpl-scriptId" fixed="true" prod="blog" skin="black" src="./终极 Shell——ZSH - 专注于互联网架构技术，努力成为一名架构师 - 博客频道 - CSDN.NET_files/html.js" type="text/javascript"></script><div class="csdn-toolbar csdn-toolbar-skin-black ">        <div class="container row center-block ">          <div class="col-md-3 pull-left logo clearfix"><a href="http://www.csdn.net/?ref=toolbar" title="CSDN首页" target="_blank" class="icon"></a><a title="频道首页" href="http://blog.csdn.net/?ref=toolbar_logo" class="img blog-icon"></a></div>          <div class="pull-right login-wrap ">            <ul class="btns">              <li class="loginlink"><a href="https://passport.csdn.net/account/login?ref=toolbar" target="_top">登录&nbsp;</a>|<a target="_top" href="http://passport.csdn.net/account/mobileregister?ref=toolbar&amp;action=mobileRegister">&nbsp;注册</a></li>              <li class="search">                <div class="icon on-search-icon">                  <div class="wrap">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                    <form action="http://so.csdn.net/search" method="get" target="_blank">                      <input type="hidden" value="toolbar" name="ref" accesskey="2">                      <div class="border">                        <input placeholder="搜索" type="text" value="" name="q" accesskey="2"><span class="icon-enter-sm"></span>                      </div>                    </form>                  </div>                </div>              </li>              <li class="favor">                <div class="icon on-favor-icon">                  <div class="wrap">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                    <div style="display:none;" class="favor-success"><span class="msg">收藏成功</span>                      <div class="btns"><span class="btn btn-primary ok">确定</span></div>                    </div>                    <div style="display:none;" class="favor-failed"><span class="icon-danger-lg"></span><span class="msg">收藏失败，请重新收藏</span>                      <div class="btns"><span class="btn btn-primary ok">确定</span></div>                    </div>                    <form role="form" class="form-horizontal favor-form">                      <div class="form-group">                        <div class="clearfix">                          <label for="input-title" class="col-sm-2 control-label">标题</label>                          <div class="col-sm-10">                            <input id="inputTitle" type="text" placeholder="" class="title form-control">                          </div>                        </div>                        <div class="alert alert-danger"><strong></strong>标题不能为空</div>                      </div>                      <div class="form-group">                        <label for="input-url" class="col-sm-2 control-label">网址</label>                        <div class="col-sm-10">                          <input id="input-url" type="text" placeholder="" class="url form-control">                        </div>                      </div>                      <div class="form-group">                        <label for="input-tag" class="col-sm-2 tag control-label">标签</label>                        <div class="col-sm-10">                          <input id="input-tag" type="text" class="form-control tag">                        </div>                      </div>                      <div class="form-group">                        <label for="input-description" class="description col-sm-2 control-label">摘要</label>                        <div class="col-sm-10">                          <textarea id="input-description" class="form-control description"></textarea>                        </div>                      </div>                      <div class="form-group">                        <div class="col-sm-offset-2 col-sm-10 ft">                          <div class="col-sm-4 pull-left">                            <div class="checkbox">                              <label>                                <input type="checkbox" name="share" checked="checked" class="share">公开                              </label>                            </div>                          </div>                          <div class="col-sm-8 pull-right favor-btns">                            <button type="button" class="cancel btn btn-default">取消</button>                            <button type="submit" class="submit btn btn-primary">收藏</button>                          </div>                        </div>                      </div>                    </form>                  </div>                </div>              </li>              <li class="notify">                <div style="display:none" class="number"></div>                <div style="" class="icon-hasnotes-sm"></div>                <div id="header_notice_num"><div class="icon-hasnotes" style=""></div></div>                <div class="icon on-notify-icon">                  <div class="wrap">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                    <div id="note1" class="csdn_note" style="left: -212px; top: 9151px;">                      <div class="box"><div class="notifications notice_list_con curr">  <div class="menu_title">    <span class="title"><a href="http://msg.csdn.net/letters" target="_blank" class="read_all">查看所有私信</a><a href="http://msg.csdn.net/" target="_blank" class="go_all">查看所有通知</a></span>  </div>  <div class="loading"></div>  <div class="empty">暂没有新通知</div>  <div class="notice_content" style="overflow-y: auto; max-height: 270px;"></div></div><div class="notifications detail_con" style="display: none">  <div class="menu_title">    <span class="title">      <a class="go_back" href="javascript:void 0;">返回通知列表</a>      <a class="notifications_page_none nextnote" href="javascript:void 0;">下一条</a>      <a class="notifications_page prvnote" href="javascript:void 0;">上一条</a>    </span>  </div>  <div class="notice_content" style="overflow-y: scroll; height: 250px;"></div></div><div class="error"></div></div>                    <iframe src="./终极 Shell——ZSH - 专注于互联网架构技术，努力成为一名架构师 - 博客频道 - CSDN.NET_files/saved_resource(1).html" frameborder="0" allowtransparency="true" style="z-index:-1;position:absolute;top:0;left:0;width:100%;height:100%;background:transparent"></iframe></div>                  </div>                </div>              </li>              <li class="ugc">                <div class="icon on-ugc-icon">                  <div class="wrap clearfix">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                    <dl>                      <dt><a href="http://geek.csdn.net/news/expert?ref=toolbar" target="_blank" class="p-news clearfix" style="display:none;"><em class="icon"></em><span>分享资讯</span></a></dt>                      <dt style="border: none;"><a href="http://u.download.csdn.net/upload?ref=toolbar" target="_blank" class="p-doc clearfix"><em class="icon"></em><span>传PPT/文档</span></a></dt>                      <dt><a href="http://bbs.csdn.net/topics/new?ref=toolbar" target="_blank" class="p-ask clearfix"><em class="icon"></em><span>提问题</span></a></dt>                      <dt><a href="http://write.blog.csdn.net/postedit?ref=toolbar" target="_blank" class="p-blog clearfix"><em class="icon"></em><span>写博客</span></a></dt>                      <dt><a href="http://u.download.csdn.net/upload?ref=toolbar" target="_blank" class="p-src clearfix"><em class="icon"></em><span>传资源</span></a></dt>                      <dt><a href="https://code.csdn.net/projects/new?ref=toolbar" target="_blank" class="c-obj clearfix"><em class="icon"></em><span>创建项目</span></a></dt>                      <dt><a href="https://code.csdn.net/snippets/new?ref=toolbar" target="_blank" class="c-code clearfix"><em class="icon"></em><span>创建代码片</span></a></dt>                    </dl>                  </div>                </div>              </li>              <li class="profile">                <div class="icon on-profile-icon"><img src="./终极 Shell——ZSH - 专注于互联网架构技术，努力成为一名架构师 - 博客频道 - CSDN.NET_files/2_ligy118.jpg" class="curr-icon-img">                  <div class="wrap clearfix">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                    <div class="bd">                      <dl class="clearfix">                        <dt class="pull-left img"><a target="_blank" href="http://my.csdn.net/?ref=toolbar" class="avatar"><img src="./终极 Shell——ZSH - 专注于互联网架构技术，努力成为一名架构师 - 博客频道 - CSDN.NET_files/2_ligy118.jpg"></a></dt>                        <dd class="info" style="border: none;"><a target="_blank" href="http://my.csdn.net/?ref=toolbar" class="nickname">ligy118</a><span class="dec"><a class="fill-dec" href="http://my.csdn.net/" target="_blank">编辑自我介绍，让更多人了解你<span class="write-icon"></span></a></span></dd>                      </dl>                    </div>                    <div class="ft clearfix"><a target="_blank" href="http://my.csdn.net/my/account/changepwd?ref=toolbar" class="pull-left"><span class="icon-cog"></span>帐号设置</a><a href="https://passport.csdn.net/account/logout?ref=toolbar" target="_top" class="pull-left" style="margin-left:132px; width:18px; height:27px; white-space:nowrap; overflow:hidden;"><span class="icon-signout"></span><span class="out">退出</span></a></div>                  </div>                </div>              </li>              <li class="apps">                <div id="chasnew123" class="hasnew" style="display: none;"></div>                <div id="cappsarea123" class="icon on-apps-icon">                  <div class="wrap clearfix">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                  <div class="detail">                    <dl>                      <dt>                        <h5>社区</h5>                      </dt>                      <dd> <a href="http://blog.csdn.net/?ref=toolbar" target="_blank">博客</a></dd>                      <dd> <a href="http://bbs.csdn.net/?ref=toolbar" target="_blank">论坛</a></dd>                      <dd> <a href="http://download.csdn.net/?ref=toolbar" target="_blank">下载</a></dd>                      <dd> <a href="http://lib.csdn.net/?ref=toolbar" target="_blank">知识库</a></dd>                      <dd><a href="http://ask.csdn.net/?ref=toolbar" target="_blank">技术问答</a></dd>                      <dd><a href="http://geek.csdn.net/?ref=toolbar" target="_blank">极客头条</a></dd>                      <dd style="display:none"> <a href="http://hero.csdn.net/?ref=toolbar" target="_blank">英雄会</a></dd>                    </dl>                  </div>                  <div class="detail">                    <dl>                      <dt>                        <h5>服务</h5>                      </dt>                      <dd style="display:none"> <a href="http://job.csdn.net/?ref=toolbar" target="_blank">JOB<img src="./终极 Shell——ZSH - 专注于互联网架构技术，努力成为一名架构师 - 博客频道 - CSDN.NET_files/new.gif" style="display: none; margin-top: -26px; width: 23px;"></a></dd>                      <dd> <a href="http://edu.csdn.net/?ref=toolbar" target="_blank">学院<img src="./终极 Shell——ZSH - 专注于互联网架构技术，努力成为一名架构师 - 博客频道 - CSDN.NET_files/new.gif" style="display: none; margin-top: -26px; width: 23px;"></a></dd>                      <dd> <a href="https://code.csdn.net/?ref=toolbar" target="_blank">CODE</a></dd>                      <dd> <a href="http://huiyi.csdn.net/?ref=toolbar" target="_blank">活动</a></dd>                      <dd> <a href="http://www.csto.com/?ref=toolbar" target="_blank">CSTO</a></dd>                      <dd> <a href="http://mall.csdn.net/?ref=toolbar" target="_blank">C币兑换<img src="./终极 Shell——ZSH - 专注于互联网架构技术，努力成为一名架构师 - 博客频道 - CSDN.NET_files/new.gif" style="display: none; margin-top: -26px; width: 23px;"></a></dd>                    </dl>                  </div>                  <div class="detail last">                    <dl>                      <dt>                        <h5>俱乐部</h5>                      </dt>                      <dd> <a href="http://cto.csdn.net/?ref=toolbar" target="_blank">CTO俱乐部</a></dd>                      <dd> <a href="http://student.csdn.net/?ref=toolbar" target="_blank">高校俱乐部</a></dd>                    </dl>                  </div>                </div>              </div>            </li>            </ul>          </div>        </div>    </div>
+     <!--new top-->
+    <div id="container">
+        <div id="header">
+    <div class="header">
+        <div id="blog_title">
+            <h2>
+                <a href="http://blog.csdn.net/iloveyin">专注于互联网架构技术，努力成为一名架构师</a></h2>
+            <h3>专注于互联网架构技术，努力成为一名架构师</h3>
+            <div class="clear">
+            </div>
+        </div>
+        <div class="clear">
+        </div>
+        
+     
+    </div>
+</div>
+<div id="navigator">
+    <div class="navigator_bg">
+    </div>
+    <div class="navigator">
+        <ul>
+            
+                <li id="btnContents"><a href="http://blog.csdn.net/iloveyin?viewmode=contents"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_mulu&#39;])">
+                    <img src="./终极 Shell——ZSH - 专注于互联网架构技术，努力成为一名架构师 - 博客频道 - CSDN.NET_files/ico_list.gif">目录视图</span></a></li>
+                <li id="btnView"><a href="http://blog.csdn.net/iloveyin?viewmode=list"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_zhaiyao&#39;])">
+                    <img src="./终极 Shell——ZSH - 专注于互联网架构技术，努力成为一名架构师 - 博客频道 - CSDN.NET_files/ico_summary.gif">摘要视图</span></a></li>
+                <li id="btnRss"><a href="http://blog.csdn.net/iloveyin/rss/list"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_RSS&#39;])">
+                    <img src="./终极 Shell——ZSH - 专注于互联网架构技术，努力成为一名架构师 - 博客频道 - CSDN.NET_files/ico_rss.gif">订阅</span></a></li>                
+            
+
+            </ul>
+    </div>
+</div>
+<script type="text/javascript">
+    var username = "iloveyin";
+    var _blogger = username;
+    var blog_address = "http://blog.csdn.net/iloveyin";
+    var static_host = "http://static.blog.csdn.net";
+    var currentUserName = "ligy118";  
+</script>
+
+        <div id="body">
+            <div id="main">
+                <div class="main">
+                        <div class="ad_class">
+<div class="notice tracking-ad" data-mod="popu_3"> 
+
+
+<a href="http://blog.csdn.net/blogdevteam/article/details/51919935">
+<font color="blue">【公告】博客系统优化升级</font></a>
+&nbsp;&nbsp;&nbsp;
+<a href="http://lib.csdn.net/base/unity3d/structure">
+<font color="red">Unity3D学习，离VR开发还有一步
+</font></a>
+&nbsp;&nbsp;&nbsp;
+<a href="http://blog.csdn.net/blogdevteam/article/details/51984275">
+<font color="blue">博乐招募开始啦
+</font></a>
+&nbsp;&nbsp;&nbsp;
+
+<a href="http://lib.csdn.net/base/vr">
+<font color="red">虚拟现实，一探究竟
+</font></a>
+&nbsp;&nbsp;&nbsp;
+
+
+</div>                        </div>
+                        
+
+
+
+<!-- 广告位开始 -->
+<ins data-revive-zoneid="72" data-revive-id="8c38e720de1c90a6f6ff52f3f89c4d57"></ins>
+<!-- 广告位结束 -->
+
+  
+<link href="./终极 Shell——ZSH - 专注于互联网架构技术，努力成为一名架构师 - 博客频道 - CSDN.NET_files/comment1.css" type="text/css" rel="stylesheet">
+<link href="./终极 Shell——ZSH - 专注于互联网架构技术，努力成为一名架构师 - 博客频道 - CSDN.NET_files/style1.css" type="text/css" rel="stylesheet">
+<script language="JavaScript" type="text/javascript" src="./终极 Shell——ZSH - 专注于互联网架构技术，努力成为一名架构师 - 博客频道 - CSDN.NET_files/jquery.cookie.js"></script>
+<script type="text/javascript" src="./终极 Shell——ZSH - 专注于互联网架构技术，努力成为一名架构师 - 博客频道 - CSDN.NET_files/main.js"></script>
+<link rel="stylesheet" href="./终极 Shell——ZSH - 专注于互联网架构技术，努力成为一名架构师 - 博客频道 - CSDN.NET_files/markdown_views.css">
+<link rel="stylesheet" href="./终极 Shell——ZSH - 专注于互联网架构技术，努力成为一名架构师 - 博客频道 - CSDN.NET_files/category.css">
+<script type="text/javascript" src="./终极 Shell——ZSH - 专注于互联网架构技术，努力成为一名架构师 - 博客频道 - CSDN.NET_files/MathJax.js"></script>
+<script type="text/javascript" src="./终极 Shell——ZSH - 专注于互联网架构技术，努力成为一名架构师 - 博客频道 - CSDN.NET_files/web-storage-cache.min.js"></script>
+<script type="text/javascript" src="./终极 Shell——ZSH - 专注于互联网架构技术，努力成为一名架构师 - 博客频道 - CSDN.NET_files/replace.min.js"></script>
+
+
+
+
+  <script type="text/ecmascript">
+      window.quickReplyflag = true;
+           
+            var isBole = false;
+            
+          
+    </script>
+<div id="article_details" class="details">
+    <div class="article_title">   
+         <span class="ico ico_type_Original"></span>
+
+
+    <h1>
+        <span class="link_title"><a href="http://blog.csdn.net/iloveyin/article/details/49522449">
+        终极 Shell——ZSH            
+        </a></span>
+    </h1>
+</div>
+
+   
+
+        <div class="article_manage clearfix">
+        <div class="article_r">
+            <span class="link_postdate">2015-10-31 00:44</span>
+            <span class="link_view" title="阅读次数">1726人阅读</span>
+            <span class="link_comments" title="评论次数"> <a href="http://blog.csdn.net/iloveyin/article/details/49522449#comments" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_pinglun&#39;])">评论</a>(0)</span>
+            <span class="link_collect tracking-ad" data-mod="popu_171"> <a href="javascript:void(0);" onclick="javascript:collectArticle(&#39;终极 Shell——ZSH&#39;,&#39;49522449&#39;);return false;" title="收藏">收藏</a></span>
+             <span class="link_report"> <a href="http://blog.csdn.net/iloveyin/article/details/49522449#report" onclick="javascript:report(49522449,2);return false;" title="举报">举报</a></span>
+
+        </div>
+    </div>
+    <div class="embody" style="display:none" id="embody">
+        <span class="embody_t">本文章已收录于：</span>
+        <div class="embody_c" id="lib" value="{&quot;err&quot;:0,&quot;msg&quot;:&quot;ok&quot;,&quot;data&quot;:[]}"></div>
+    </div>
+    <style type="text/css">        
+            .embody{
+                padding:10px 10px 10px;
+                margin:0 -20px;
+                border-bottom:solid 1px #ededed;                
+            }
+            .embody_b{
+                margin:0 ;
+                padding:10px 0;
+            }
+            .embody .embody_t,.embody .embody_c{
+                display: inline-block;
+                margin-right:10px;
+            }
+            .embody_t{
+                font-size: 12px;
+                color:#999;
+            }
+            .embody_c{
+                font-size: 12px;
+            }
+            .embody_c img,.embody_c em{
+                display: inline-block;
+                vertical-align: middle;               
+            }
+             .embody_c img{               
+                width:30px;
+                height:30px;
+            }
+            .embody_c em{
+                margin: 0 20px 0 10px;
+                color:#333;
+                font-style: normal;
+            }
+    </style>
+    <script type="text/javascript">
+        $(function () {
+            try
+            {
+                var lib = eval("("+$("#lib").attr("value")+")");
+                var html = "";
+                if (lib.err == 0) {
+                    $.each(lib.data, function (i) {
+                        var obj = lib.data[i];
+                        //html += '<img src="' + obj.logo + '"/>' + obj.name + "&nbsp;&nbsp;";
+                        html += ' <a href="' + obj.url + '" target="_blank">';
+                        html += ' <img src="' + obj.logo + '">';
+                        html += ' <em><b>' + obj.name + '</b></em>';
+                        html += ' </a>';
+                    });
+                    if (html != "") {
+                        setTimeout(function () {
+                            $("#lib").html(html);                      
+                            $("#embody").show();
+                        }, 100);
+                    }
+                }      
+            } catch (err)
+            { }
+            
+        });
+    </script>
+      <div class="category clearfix">
+        <div class="category_l">
+           <img src="./终极 Shell——ZSH - 专注于互联网架构技术，努力成为一名架构师 - 博客频道 - CSDN.NET_files/category_icon.jpg">
+            <span>分类：</span>
+        </div>
+        <div class="category_r">
+                    <label onclick="GetCategoryArticles(&#39;911791&#39;,&#39;iloveyin&#39;,&#39;top&#39;,&#39;49522449&#39;);">
+                        <span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_fenlei&#39;]);">Linux<em>（44）</em></span>
+                      <img class="arrow-down" src="./终极 Shell——ZSH - 专注于互联网架构技术，努力成为一名架构师 - 博客频道 - CSDN.NET_files/arrow_triangle _down.jpg" style="display:inline;">
+                      <img class="arrow-up" src="./终极 Shell——ZSH - 专注于互联网架构技术，努力成为一名架构师 - 博客频道 - CSDN.NET_files/arrow_triangle_up.jpg" style="display:none;">
+                        <div class="subItem">
+                            <div class="subItem_t"><a href="http://blog.csdn.net/iloveyin/article/category/911791" target="_blank">作者同类文章</a><i class="J_close">X</i></div>
+                            <ul class="subItem_l" id="top_911791">                            
+                            </ul>
+                        </div>
+                    </label>                    
+        </div>
+    </div>
+    <script type="text/javascript" src="./终极 Shell——ZSH - 专注于互联网架构技术，努力成为一名架构师 - 博客频道 - CSDN.NET_files/category.js"></script>  
+        <div class="bog_copyright">         
+            <p class="copyright_p">版权声明：本文为博主原创文章，未经博主允许不得转载。</p>
+        </div>
+
+  
+
+  
+  
+     
+
+<div id="article_content" class="article_content">
+
+<div>
+<p>Shell是Linux/Unix的一个外壳，你理解成衣服也行。它负责外界与Linux内核的交互，接收用户或其他应用程序的命令，然后把这些命令转化成内核能理解的语言，传给内核，内核是真正干活的，干完之后再把结果返回用户或应用程序。</p>
+<p>Linux/Unix提供了很多种Shell，为毛要这么多Shell？难道用来炒着吃么？那我问你，你同类型的衣服怎么有那么多件？花色，质地还不一样。写程序比买衣服复杂多了，而且程序员往往负责把复杂的事情搞简单，简单的事情搞复杂。牛程序员看到不爽的Shell，就会自己重新写一套，慢慢形成了一些标准，常用的Shell有这么几种，sh、bash、csh等，想知道你的系统有几种shell，可以通过以下命令查看：</p>
+<div class="highlight">
+<pre><code class="language-text">cat /etc/shells
+</code></pre>
+</div>
+<p>显示如下：</p>
+<div class="highlight">
+<pre><code class="language-text">/bin/bash
+/bin/csh
+/bin/ksh
+/bin/sh
+/bin/tcsh
+/bin/zsh
+</code></pre>
+</div>
+<p>在 Linux 里执行这个命令和 Mac 略有不同，你会发现 Mac 多了一个 zsh，也就是说 OS X 系统预装了个 zsh，这是个神马 Shell 呢？</p>
+<p>目前常用的 Linux 系统和 OS X 系统的默认 Shell 都是 bash，但是真正强大的 Shell 是深藏不露的 zsh， 这货绝对是马车中的跑车，跑车中的飞行车，史称『终极 Shell』，但是由于配置过于复杂，所以初期无人问津，很多人跑过来看看 zsh 的配置指南，什么都不说转身就走了。直到有一天，国外有个穷极无聊的程序员开发出了一个能够让你快速上手的zsh项目，叫做「oh my zsh」，Github 网址是：<a target="_blank" href="https://github.com/robbyrussell/oh-my-zsh" class=" external" rel="nofollow noreferrer"><span class="invisible">https://</span><span class="visible">github.com/robbyrussell</span><span class="invisible">/oh-my-zsh</span><span class="ellipsis"></span><span class="icon-external" style="font-style:italic"></span></a>。这玩意就像「X天叫你学会
+ C++」系列，可以让你神功速成，而且是真的。</p>
+<p>好，下面我们看看如何安装、配置和使用 zsh。</p>
+<strong><u>安装zsh</u></strong>
+<p>如果你用 Mac，就可以直接看下一节<br>
+如果你用 Redhat Linux，执行：sudo yum install zsh<br>
+如果你用 Ubuntu Linux，执行：sudo apt-get install zsh<br>
+如果你用 Windows……去洗洗睡吧。</p>
+<p>安装完成后设置当前用户使用 zsh：chsh -s /bin/zsh，根据提示输入当前用户的密码就可以了。</p>
+安装oh my zsh
+<p>首先安装 <a href="http://lib.csdn.net/base/28" class="replace_word" title="Git知识库" target="_blank" style="color:#df3434; font-weight:bold;">Git</a>，安装方式同上，把 zsh 换成 git 即可。</p>
+<p>安装「oh my zsh」可以自动安装也可以手动安装。</p>
+<p>自动安装：</p>
+<div class="highlight">
+<pre><code class="language-text">wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | sh
+</code></pre>
+</div>
+<p>手动安装：</p>
+<div class="highlight">
+<pre><code class="language-text">git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
+</code></pre>
+</div>
+<p>都不复杂，安装完成之后退出当前会话重新打开一个终端窗口，你就可以见到这个彩色的提示了：</p>
+<img src="./终极 Shell——ZSH - 专注于互联网架构技术，努力成为一名架构师 - 博客频道 - CSDN.NET_files/6bc76a6bbbac6267781dc9e59496d2ce_b.jpg" class="origin_image zh-lightbox-thumb" width="682" alt=""></div>
+<div>
+<div><br>
+<u><strong>配置</strong></u>
+<p>zsh 的配置主要集中在用户当前目录的.zshrc里，用 vim 或你喜欢的其他编辑器打开.zshrc，在最下面会发现这么一行字：</p>
+<p># Customize to your needs…</p>
+<p>可以在此处定义自己的环境变量和别名，当然，oh my zsh 在安装时已经自动读取当前的环境变量并进行了设置，你可以继续追加其他环境变量。</p>
+<p>接下来进行别名的设置，我自己的部分配置如下：</p>
+</div>
+<div class="dp-highlighter bg_plain"><div class="bar"><div class="tools"><b>[plain]</b> <a href="http://blog.csdn.net/iloveyin/article/details/49522449#" class="ViewSource" title="view plain" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><span data-mod="popu_168"> <a href="http://blog.csdn.net/iloveyin/article/details/49522449#" class="CopyToClipboard" title="copy" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;">copy</a><div style="position: absolute; left: 528px; top: 1659px; width: 28px; height: 15px; z-index: 99;"><embed id="ZeroClipboardMovie_1" src="http://static.blog.csdn.net/scripts/ZeroClipboard/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="28" height="15" name="ZeroClipboardMovie_1" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=1&amp;width=28&amp;height=15" wmode="transparent"></div></span><span data-mod="popu_169"> <a href="http://blog.csdn.net/iloveyin/article/details/49522449#" class="PrintSource" title="print" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a></span><a href="http://blog.csdn.net/iloveyin/article/details/49522449#" class="About" title="?" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a></div></div><ol start="1"><li class="alt"><span><span>alias&nbsp;cls='clear'&nbsp;&nbsp;</span></span></li><li class=""><span>alias&nbsp;ll='ls&nbsp;-l'&nbsp;&nbsp;</span></li><li class="alt"><span>alias&nbsp;la='ls&nbsp;-a'&nbsp;&nbsp;</span></li><li class=""><span>alias&nbsp;vi='vim'&nbsp;&nbsp;</span></li><li class="alt"><span>alias&nbsp;javac="javac&nbsp;-J-Dfile.encoding=utf8"&nbsp;&nbsp;</span></li><li class=""><span>alias&nbsp;grep="grep&nbsp;--color=auto"&nbsp;&nbsp;</span></li><li class="alt"><span>alias&nbsp;-s&nbsp;html=mate&nbsp;&nbsp;&nbsp;#&nbsp;在命令行直接输入后缀为&nbsp;html&nbsp;的文件名，会在&nbsp;TextMate&nbsp;中打开&nbsp;&nbsp;</span></li><li class=""><span>alias&nbsp;-s&nbsp;rb=mate&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;在命令行直接输入&nbsp;ruby&nbsp;文件，会在&nbsp;TextMate&nbsp;中打开&nbsp;&nbsp;</span></li><li class="alt"><span>alias&nbsp;-s&nbsp;py=vi&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;在命令行直接输入&nbsp;python&nbsp;文件，会用&nbsp;vim&nbsp;中打开，以下类似&nbsp;&nbsp;</span></li><li class=""><span>alias&nbsp;-s&nbsp;js=vi&nbsp;&nbsp;</span></li><li class="alt"><span>alias&nbsp;-s&nbsp;c=vi&nbsp;&nbsp;</span></li><li class=""><span>alias&nbsp;-s&nbsp;java=vi&nbsp;&nbsp;</span></li><li class="alt"><span>alias&nbsp;-s&nbsp;txt=vi&nbsp;&nbsp;</span></li><li class=""><span>alias&nbsp;-s&nbsp;gz='tar&nbsp;-xzvf'&nbsp;&nbsp;</span></li><li class="alt"><span>alias&nbsp;-s&nbsp;tgz='tar&nbsp;-xzvf'&nbsp;&nbsp;</span></li><li class=""><span>alias&nbsp;-s&nbsp;zip='unzip'&nbsp;&nbsp;</span></li><li class="alt"><span>alias&nbsp;-s&nbsp;bz2='tar&nbsp;-xjvf'&nbsp;&nbsp;</span></li><li class=""><span>#color{{{&nbsp;&nbsp;</span></li><li class="alt"><span>autoload&nbsp;colors&nbsp;&nbsp;</span></li><li class=""><span>colors&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>for&nbsp;color&nbsp;in&nbsp;RED&nbsp;GREEN&nbsp;YELLOW&nbsp;BLUE&nbsp;MAGENTA&nbsp;CYAN&nbsp;WHITE;&nbsp;do&nbsp;&nbsp;</span></li><li class="alt"><span>eval&nbsp;_$color='%{$terminfo[bold]$fg[${(L)color}]%}'&nbsp;&nbsp;</span></li><li class=""><span>eval&nbsp;$color='%{$fg[${(L)color}]%}'&nbsp;&nbsp;</span></li><li class="alt"><span>((&nbsp;count&nbsp;=&nbsp;$count&nbsp;+&nbsp;1&nbsp;))&nbsp;&nbsp;</span></li><li class=""><span>done&nbsp;&nbsp;</span></li><li class="alt"><span>FINISH="%{$terminfo[sgr0]%}"&nbsp;&nbsp;</span></li><li class=""><span>#}}}&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>#命令提示符&nbsp;&nbsp;</span></li><li class="alt"><span>RPROMPT=$(echo&nbsp;"$RED%D&nbsp;%T$FINISH")&nbsp;&nbsp;</span></li><li class=""><span>PROMPT=$(echo&nbsp;"$CYAN%n@$YELLOW%M:$GREEN%/$_YELLOW&gt;$FINISH&nbsp;")&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>#PROMPT=$(echo&nbsp;"$BLUE%M$GREEN%/&nbsp;&nbsp;</span></li><li class="alt"><span>#$CYAN%n@$BLUE%M:$GREEN%/$_YELLOW&gt;&gt;&gt;$FINISH&nbsp;")&nbsp;&nbsp;</span></li><li class=""><span>#标题栏、任务栏样式{{{&nbsp;&nbsp;</span></li><li class="alt"><span>case&nbsp;$TERM&nbsp;in&nbsp;(*xterm*|*rxvt*|(dt|k|E)term)&nbsp;&nbsp;</span></li><li class=""><span>precmd&nbsp;()&nbsp;{&nbsp;print&nbsp;-Pn&nbsp;"\e]0;%n@%M//%/\a"&nbsp;}&nbsp;&nbsp;</span></li><li class="alt"><span>preexec&nbsp;()&nbsp;{&nbsp;print&nbsp;-Pn&nbsp;"\e]0;%n@%M//%/\&nbsp;$1\a"&nbsp;}&nbsp;&nbsp;</span></li><li class=""><span>;;&nbsp;&nbsp;</span></li><li class="alt"><span>esac&nbsp;&nbsp;</span></li><li class=""><span>#}}}&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>#编辑器&nbsp;&nbsp;</span></li><li class="alt"><span>export&nbsp;EDITOR=vim&nbsp;&nbsp;</span></li><li class=""><span>#输入法&nbsp;&nbsp;</span></li><li class="alt"><span>export&nbsp;XMODIFIERS="@im=ibus"&nbsp;&nbsp;</span></li><li class=""><span>export&nbsp;QT_MODULE=ibus&nbsp;&nbsp;</span></li><li class="alt"><span>export&nbsp;GTK_MODULE=ibus&nbsp;&nbsp;</span></li><li class=""><span>#关于历史纪录的配置&nbsp;{{{&nbsp;&nbsp;</span></li><li class="alt"><span>#历史纪录条目数量&nbsp;&nbsp;</span></li><li class=""><span>export&nbsp;HISTSIZE=10000&nbsp;&nbsp;</span></li><li class="alt"><span>#注销后保存的历史纪录条目数量&nbsp;&nbsp;</span></li><li class=""><span>export&nbsp;SAVEHIST=10000&nbsp;&nbsp;</span></li><li class="alt"><span>#历史纪录文件&nbsp;&nbsp;</span></li><li class=""><span>export&nbsp;HISTFILE=~/.zhistory&nbsp;&nbsp;</span></li><li class="alt"><span>#以附加的方式写入历史纪录&nbsp;&nbsp;</span></li><li class=""><span>setopt&nbsp;INC_APPEND_HISTORY&nbsp;&nbsp;</span></li><li class="alt"><span>#如果连续输入的命令相同，历史纪录中只保留一个&nbsp;&nbsp;</span></li><li class=""><span>setopt&nbsp;HIST_IGNORE_DUPS&nbsp;&nbsp;</span></li><li class="alt"><span>#为历史纪录中的命令添加时间戳&nbsp;&nbsp;</span></li><li class=""><span>setopt&nbsp;EXTENDED_HISTORY&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>#启用&nbsp;cd&nbsp;命令的历史纪录，cd&nbsp;-[TAB]进入历史路径&nbsp;&nbsp;</span></li><li class="alt"><span>setopt&nbsp;AUTO_PUSHD&nbsp;&nbsp;</span></li><li class=""><span>#相同的历史路径只保留一个&nbsp;&nbsp;</span></li><li class="alt"><span>setopt&nbsp;PUSHD_IGNORE_DUPS&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;</span></li><li class="alt"><span>#在命令前添加空格，不将此命令添加到纪录文件中&nbsp;&nbsp;</span></li><li class=""><span>#setopt&nbsp;HIST_IGNORE_SPACE&nbsp;&nbsp;</span></li><li class="alt"><span>#}}}&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;</span></li><li class="alt"><span>#每个目录使用独立的历史纪录{{{&nbsp;&nbsp;</span></li><li class=""><span>cd()&nbsp;{&nbsp;&nbsp;</span></li><li class="alt"><span>builtin&nbsp;cd&nbsp;"$@"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;do&nbsp;actual&nbsp;cd&nbsp;&nbsp;</span></li><li class=""><span>fc&nbsp;-W&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;write&nbsp;current&nbsp;history&nbsp;&nbsp;file&nbsp;&nbsp;</span></li><li class="alt"><span>local&nbsp;HISTDIR="$HOME/.zsh_history$PWD"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;use&nbsp;nested&nbsp;folders&nbsp;for&nbsp;history&nbsp;&nbsp;</span></li><li class=""><span>if&nbsp;&nbsp;[&nbsp;!&nbsp;-d&nbsp;"$HISTDIR"&nbsp;]&nbsp;;&nbsp;then&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;create&nbsp;folder&nbsp;if&nbsp;needed&nbsp;&nbsp;</span></li><li class="alt"><span>mkdir&nbsp;-p&nbsp;"$HISTDIR"&nbsp;&nbsp;</span></li><li class=""><span>fi&nbsp;&nbsp;</span></li><li class="alt"><span>export&nbsp;HISTFILE="$HISTDIR/zhistory"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;set&nbsp;new&nbsp;history&nbsp;file&nbsp;&nbsp;</span></li><li class=""><span>touch&nbsp;$HISTFILE&nbsp;&nbsp;</span></li><li class="alt"><span>local&nbsp;ohistsize=$HISTSIZE&nbsp;&nbsp;</span></li><li class=""><span>HISTSIZE=0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;Discard&nbsp;previous&nbsp;dir's&nbsp;history&nbsp;&nbsp;</span></li><li class="alt"><span>HISTSIZE=$ohistsize&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;Prepare&nbsp;for&nbsp;new&nbsp;dir's&nbsp;history&nbsp;&nbsp;</span></li><li class=""><span>fc&nbsp;-R&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#read&nbsp;from&nbsp;current&nbsp;histfile&nbsp;&nbsp;</span></li><li class="alt"><span>}&nbsp;&nbsp;</span></li><li class=""><span>mkdir&nbsp;-p&nbsp;$HOME/.zsh_history$PWD&nbsp;&nbsp;</span></li><li class="alt"><span>export&nbsp;HISTFILE="$HOME/.zsh_history$PWD/zhistory"&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;</span></li><li class="alt"><span>function&nbsp;allhistory&nbsp;{&nbsp;cat&nbsp;$(find&nbsp;$HOME/.zsh_history&nbsp;-name&nbsp;zhistory)&nbsp;}&nbsp;&nbsp;</span></li><li class=""><span>function&nbsp;convhistory&nbsp;{&nbsp;&nbsp;</span></li><li class="alt"><span>sort&nbsp;$1&nbsp;|&nbsp;uniq&nbsp;|&nbsp;&nbsp;</span></li><li class=""><span>sed&nbsp;'s/^:<span class="MathJax_Preview"></span><span class="MathJax" id="MathJax-Element-1-Frame" role="textbox" aria-readonly="true"><nobr><span class="math" id="MathJax-Span-1" style="width: 3.65em; display: inline-block;"><span style="display: inline-block; position: relative; width: 3.737em; height: 0px; font-size: 96%;"><span style="position: absolute; clip: rect(1.827em 1000em 3.39em -0.69em); top: -2.86em; left: 0.004em;"><span class="mrow" id="MathJax-Span-2"><span class="mo" id="MathJax-Span-3" style="font-family: MathJax_Main;">[</span><span class="mn" id="MathJax-Span-4" style="font-family: MathJax_Main;">0</span><span class="mo" id="MathJax-Span-5" style="font-family: MathJax_Main; padding-left: 0.265em;">−</span><span class="mn" id="MathJax-Span-6" style="font-family: MathJax_Main; padding-left: 0.265em;">9</span><span class="mo" id="MathJax-Span-7" style="font-family: MathJax_Main;">]</span><span class="mo" id="MathJax-Span-8" style="font-family: MathJax_Main; padding-left: 0.265em;">∗</span></span><span style="display: inline-block; width: 0px; height: 2.869em;"></span></span></span><span style="border-left: 0.004em solid; display: inline-block; overflow: hidden; width: 0px; height: 1.171em; vertical-align: -0.329em; color: rgb(255, 255, 255);"></span></span></nobr></span><script type="math/tex" id="MathJax-Element-1">[ 0-9]*</script>:[0-9]*;<span class="MathJax_Preview"></span><span class="MathJax" id="MathJax-Element-2-Frame" role="textbox" aria-readonly="true"><nobr><span class="math" id="MathJax-Span-9" style="width: 0.959em; display: inline-block;"><span style="display: inline-block; position: relative; width: 0.959em; height: 0px; font-size: 96%;"><span style="position: absolute; clip: rect(2.174em 1000em 3.129em -0.69em); top: -2.86em; left: 0.004em;"><span class="mrow" id="MathJax-Span-10"><span class="mo" id="MathJax-Span-11" style="font-family: MathJax_Main;">.</span><span class="mo" id="MathJax-Span-12" style="font-family: MathJax_Main; padding-left: 0.178em;">∗</span></span><span style="display: inline-block; width: 0px; height: 2.869em;"></span></span></span><span style="border-left: 0.004em solid; display: inline-block; overflow: hidden; width: 0px; height: 0.588em; vertical-align: -0.079em; color: rgb(255, 255, 255);"></span></span></nobr></span><script type="math/tex" id="MathJax-Element-2">.*</script>/\1::::::\2/'&nbsp;|&nbsp;&nbsp;</span></li><li class="alt"><span>awk&nbsp;-F"::::::"&nbsp;'{&nbsp;$1=strftime("%Y-%m-%d&nbsp;%T",$1)&nbsp;"|";&nbsp;print&nbsp;}'&nbsp;&nbsp;</span></li><li class=""><span>}&nbsp;&nbsp;</span></li><li class="alt"><span>#使用&nbsp;histall&nbsp;命令查看全部历史纪录&nbsp;&nbsp;</span></li><li class=""><span>function&nbsp;histall&nbsp;{&nbsp;convhistory&nbsp;=(allhistory)&nbsp;|&nbsp;&nbsp;</span></li><li class="alt"><span>sed&nbsp;'/^.\{20\}&nbsp;*cd/i\\'&nbsp;}&nbsp;&nbsp;</span></li><li class=""><span>#使用&nbsp;hist&nbsp;查看当前目录历史纪录&nbsp;&nbsp;</span></li><li class="alt"><span>function&nbsp;hist&nbsp;{&nbsp;convhistory&nbsp;$HISTFILE&nbsp;}&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;</span></li><li class="alt"><span>#全部历史纪录&nbsp;top50&nbsp;&nbsp;</span></li><li class=""><span>function&nbsp;top50&nbsp;{&nbsp;allhistory&nbsp;|&nbsp;awk&nbsp;-F':[&nbsp;0-9]*:[0-9]*;'&nbsp;'{&nbsp;$1=""&nbsp;;&nbsp;print&nbsp;}'&nbsp;|&nbsp;sed&nbsp;'s/&nbsp;/\n/g'&nbsp;|&nbsp;sed&nbsp;'/^$/d'&nbsp;|&nbsp;sort&nbsp;|&nbsp;uniq&nbsp;-c&nbsp;|&nbsp;sort&nbsp;-nr&nbsp;|&nbsp;head&nbsp;-n&nbsp;50&nbsp;}&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>#}}}&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>#杂项&nbsp;{{{&nbsp;&nbsp;</span></li><li class="alt"><span>#允许在交互模式中使用注释&nbsp;&nbsp;例如：&nbsp;&nbsp;</span></li><li class=""><span>#cmd&nbsp;#这是注释&nbsp;&nbsp;</span></li><li class="alt"><span>setopt&nbsp;INTERACTIVE_COMMENTS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;</span></li><li class="alt"><span>#启用自动&nbsp;cd，输入目录名回车进入目录&nbsp;&nbsp;</span></li><li class=""><span>#稍微有点混乱，不如&nbsp;cd&nbsp;补全实用&nbsp;&nbsp;</span></li><li class="alt"><span>setopt&nbsp;AUTO_CD&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;</span></li><li class="alt"><span>#扩展路径&nbsp;&nbsp;</span></li><li class=""><span>#/v/c/p/p&nbsp;=&gt;&nbsp;/var/cache/pacman/pkg&nbsp;&nbsp;</span></li><li class="alt"><span>setopt&nbsp;complete_in_word&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;</span></li><li class="alt"><span>#禁用&nbsp;core&nbsp;dumps&nbsp;&nbsp;</span></li><li class=""><span>limit&nbsp;coredumpsize&nbsp;0&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>#Emacs风格&nbsp;键绑定&nbsp;&nbsp;</span></li><li class="alt"><span>bindkey&nbsp;-e&nbsp;&nbsp;</span></li><li class=""><span>#bindkey&nbsp;-v&nbsp;&nbsp;</span></li><li class="alt"><span>#设置&nbsp;[DEL]键&nbsp;为向后删除&nbsp;&nbsp;</span></li><li class=""><span>#bindkey&nbsp;"\e[3~"&nbsp;delete-char&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>#以下字符视为单词的一部分&nbsp;&nbsp;</span></li><li class="alt"><span>WORDCHARS='*?_-[]~=&amp;;!#$%^(){}&lt;&gt;'&nbsp;&nbsp;</span></li><li class=""><span>#}}}&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>#自动补全功能&nbsp;{{{&nbsp;&nbsp;</span></li><li class="alt"><span>setopt&nbsp;AUTO_LIST&nbsp;&nbsp;</span></li><li class=""><span>setopt&nbsp;AUTO_MENU&nbsp;&nbsp;</span></li><li class="alt"><span>#开启此选项，补全时会直接选中菜单项&nbsp;&nbsp;</span></li><li class=""><span>#setopt&nbsp;MENU_COMPLETE&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>autoload&nbsp;-U&nbsp;compinit&nbsp;&nbsp;</span></li><li class="alt"><span>compinit&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;</span></li><li class="alt"><span>#自动补全缓存&nbsp;&nbsp;</span></li><li class=""><span>#zstyle&nbsp;':completion::complete:*'&nbsp;use-cache&nbsp;on&nbsp;&nbsp;</span></li><li class="alt"><span>#zstyle&nbsp;':completion::complete:*'&nbsp;cache-path&nbsp;.zcache&nbsp;&nbsp;</span></li><li class=""><span>#zstyle&nbsp;':completion:*:cd:*'&nbsp;ignore-parents&nbsp;parent&nbsp;pwd&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>#自动补全选项&nbsp;&nbsp;</span></li><li class="alt"><span>zstyle&nbsp;':completion:*'&nbsp;verbose&nbsp;yes&nbsp;&nbsp;</span></li><li class=""><span>zstyle&nbsp;':completion:*'&nbsp;menu&nbsp;select&nbsp;&nbsp;</span></li><li class="alt"><span>zstyle&nbsp;':completion:*:*:default'&nbsp;force-list&nbsp;always&nbsp;&nbsp;</span></li><li class=""><span>zstyle&nbsp;':completion:*'&nbsp;select-prompt&nbsp;'%SSelect:&nbsp;&nbsp;lines:&nbsp;%L&nbsp;&nbsp;matches:&nbsp;%M&nbsp;&nbsp;[%p]'&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>zstyle&nbsp;':completion:*:match:*'&nbsp;original&nbsp;only&nbsp;&nbsp;</span></li><li class="alt"><span>zstyle&nbsp;':completion::prefix-1:*'&nbsp;completer&nbsp;_complete&nbsp;&nbsp;</span></li><li class=""><span>zstyle&nbsp;':completion:predict:*'&nbsp;completer&nbsp;_complete&nbsp;&nbsp;</span></li><li class="alt"><span>zstyle&nbsp;':completion:incremental:*'&nbsp;completer&nbsp;_complete&nbsp;_correct&nbsp;&nbsp;</span></li><li class=""><span>zstyle&nbsp;':completion:*'&nbsp;completer&nbsp;_complete&nbsp;_prefix&nbsp;_correct&nbsp;_prefix&nbsp;_match&nbsp;_approximate&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>#路径补全&nbsp;&nbsp;</span></li><li class="alt"><span>zstyle&nbsp;':completion:*'&nbsp;expand&nbsp;'yes'&nbsp;&nbsp;</span></li><li class=""><span>zstyle&nbsp;':completion:*'&nbsp;squeeze-shlashes&nbsp;'yes'&nbsp;&nbsp;</span></li><li class="alt"><span>zstyle&nbsp;':completion::complete:*'&nbsp;'\\'&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;</span></li><li class="alt"><span>#彩色补全菜单&nbsp;&nbsp;</span></li><li class=""><span>eval&nbsp;$(dircolors&nbsp;-b)&nbsp;&nbsp;</span></li><li class="alt"><span>export&nbsp;ZLSCOLORS="${LS_COLORS}"&nbsp;&nbsp;</span></li><li class=""><span>zmodload&nbsp;zsh/complist&nbsp;&nbsp;</span></li><li class="alt"><span>zstyle&nbsp;':completion:*'&nbsp;list-colors&nbsp;${(s.:.)LS_COLORS}&nbsp;&nbsp;</span></li><li class=""><span>zstyle&nbsp;':completion:*:*:kill:*:processes'&nbsp;list-colors&nbsp;'=(#b)&nbsp;#([0-9]#)*=0=01;31'&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>#修正大小写&nbsp;&nbsp;</span></li><li class="alt"><span>zstyle&nbsp;':completion:*'&nbsp;matcher-list&nbsp;''&nbsp;'m:{a-zA-Z}={A-Za-z}'&nbsp;&nbsp;</span></li><li class=""><span>#错误校正&nbsp;&nbsp;</span></li><li class="alt"><span>zstyle&nbsp;':completion:*'&nbsp;completer&nbsp;_complete&nbsp;_match&nbsp;_approximate&nbsp;&nbsp;</span></li><li class=""><span>zstyle&nbsp;':completion:*:match:*'&nbsp;original&nbsp;only&nbsp;&nbsp;</span></li><li class="alt"><span>zstyle&nbsp;':completion:*:approximate:*'&nbsp;max-errors&nbsp;1&nbsp;numeric&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;</span></li><li class="alt"><span>#kill&nbsp;命令补全&nbsp;&nbsp;</span></li><li class=""><span>compdef&nbsp;pkill=kill&nbsp;&nbsp;</span></li><li class="alt"><span>compdef&nbsp;pkill=killall&nbsp;&nbsp;</span></li><li class=""><span>zstyle&nbsp;':completion:*:*:kill:*'&nbsp;menu&nbsp;yes&nbsp;select&nbsp;&nbsp;</span></li><li class="alt"><span>zstyle&nbsp;':completion:*:*:*:*:processes'&nbsp;force-list&nbsp;always&nbsp;&nbsp;</span></li><li class=""><span>zstyle&nbsp;':completion:*:processes'&nbsp;command&nbsp;'ps&nbsp;-au$USER'&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>#补全类型提示分组&nbsp;&nbsp;</span></li><li class="alt"><span>zstyle&nbsp;':completion:*:matches'&nbsp;group&nbsp;'yes'&nbsp;&nbsp;</span></li><li class=""><span>zstyle&nbsp;':completion:*'&nbsp;group-name&nbsp;''&nbsp;&nbsp;</span></li><li class="alt"><span>zstyle&nbsp;':completion:*:options'&nbsp;description&nbsp;'yes'&nbsp;&nbsp;</span></li><li class=""><span>zstyle&nbsp;':completion:*:options'&nbsp;auto-description&nbsp;'%d'&nbsp;&nbsp;</span></li><li class="alt"><span>zstyle&nbsp;':completion:*:descriptions'&nbsp;format&nbsp;$'\e[01;33m&nbsp;--&nbsp;%d&nbsp;--\e[0m'&nbsp;&nbsp;</span></li><li class=""><span>zstyle&nbsp;':completion:*:messages'&nbsp;format&nbsp;$'\e[01;35m&nbsp;--&nbsp;%d&nbsp;--\e[0m'&nbsp;&nbsp;</span></li><li class="alt"><span>zstyle&nbsp;':completion:*:warnings'&nbsp;format&nbsp;$'\e[01;31m&nbsp;--&nbsp;No&nbsp;Matches&nbsp;Found&nbsp;--\e[0m'&nbsp;&nbsp;</span></li><li class=""><span>zstyle&nbsp;':completion:*:corrections'&nbsp;format&nbsp;$'\e[01;32m&nbsp;--&nbsp;%d&nbsp;(errors:&nbsp;%e)&nbsp;--\e[0m'&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>#&nbsp;cd&nbsp;~&nbsp;补全顺序&nbsp;&nbsp;</span></li><li class="alt"><span>zstyle&nbsp;':completion:*:-tilde-:*'&nbsp;group-order&nbsp;'named-directories'&nbsp;'path-directories'&nbsp;'users'&nbsp;'expand'&nbsp;&nbsp;</span></li><li class=""><span>#}}}&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>##行编辑高亮模式&nbsp;{{{&nbsp;&nbsp;</span></li><li class="alt"><span>#&nbsp;Ctrl+@&nbsp;设置标记，标记和光标点之间为&nbsp;region&nbsp;&nbsp;</span></li><li class=""><span>zle_highlight=(region:bg=magenta&nbsp;#选中区域&nbsp;&nbsp;</span></li><li class="alt"><span>special:bold&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#特殊字符&nbsp;&nbsp;</span></li><li class=""><span>isearch:underline)#搜索时使用的关键字&nbsp;&nbsp;</span></li><li class="alt"><span>#}}}&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;</span></li><li class="alt"><span>##空行(光标在行首)补全&nbsp;"cd&nbsp;"&nbsp;{{{&nbsp;&nbsp;</span></li><li class=""><span>user-complete(){&nbsp;&nbsp;</span></li><li class="alt"><span>case&nbsp;$BUFFER&nbsp;in&nbsp;&nbsp;</span></li><li class=""><span>""&nbsp;)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;空行填入&nbsp;"cd&nbsp;"&nbsp;&nbsp;</span></li><li class="alt"><span>BUFFER="cd&nbsp;"&nbsp;&nbsp;</span></li><li class=""><span>zle&nbsp;end-of-line&nbsp;&nbsp;</span></li><li class="alt"><span>zle&nbsp;expand-or-complete&nbsp;&nbsp;</span></li><li class=""><span>;;&nbsp;&nbsp;</span></li><li class="alt"><span>"cd&nbsp;--"&nbsp;)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;"cd&nbsp;--"&nbsp;替换为&nbsp;"cd&nbsp;+"&nbsp;&nbsp;</span></li><li class=""><span>BUFFER="cd&nbsp;+"&nbsp;&nbsp;</span></li><li class="alt"><span>zle&nbsp;end-of-line&nbsp;&nbsp;</span></li><li class=""><span>zle&nbsp;expand-or-complete&nbsp;&nbsp;</span></li><li class="alt"><span>;;&nbsp;&nbsp;</span></li><li class=""><span>"cd&nbsp;+-"&nbsp;)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;"cd&nbsp;+-"&nbsp;替换为&nbsp;"cd&nbsp;-"&nbsp;&nbsp;</span></li><li class="alt"><span>BUFFER="cd&nbsp;-"&nbsp;&nbsp;</span></li><li class=""><span>zle&nbsp;end-of-line&nbsp;&nbsp;</span></li><li class="alt"><span>zle&nbsp;expand-or-complete&nbsp;&nbsp;</span></li><li class=""><span>;;&nbsp;&nbsp;</span></li><li class="alt"><span>*&nbsp;)&nbsp;&nbsp;</span></li><li class=""><span>zle&nbsp;expand-or-complete&nbsp;&nbsp;</span></li><li class="alt"><span>;;&nbsp;&nbsp;</span></li><li class=""><span>esac&nbsp;&nbsp;</span></li><li class="alt"><span>}&nbsp;&nbsp;</span></li><li class=""><span>zle&nbsp;-N&nbsp;user-complete&nbsp;&nbsp;</span></li><li class="alt"><span>bindkey&nbsp;"\t"&nbsp;user-complete&nbsp;&nbsp;</span></li><li class=""><span>#}}}&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>##在命令前插入&nbsp;sudo&nbsp;{{{&nbsp;&nbsp;</span></li><li class="alt"><span>#定义功能&nbsp;&nbsp;</span></li><li class=""><span>sudo-command-line()&nbsp;{&nbsp;&nbsp;</span></li><li class="alt"><span>[[&nbsp;-z&nbsp;$BUFFER&nbsp;]]&nbsp;&amp;&amp;&nbsp;zle&nbsp;up-history&nbsp;&nbsp;</span></li><li class=""><span>[[&nbsp;$BUFFER&nbsp;!=&nbsp;sudo\&nbsp;*&nbsp;]]&nbsp;&amp;&amp;&nbsp;BUFFER="sudo&nbsp;$BUFFER"&nbsp;&nbsp;</span></li><li class="alt"><span>zle&nbsp;end-of-line&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#光标移动到行末&nbsp;&nbsp;</span></li><li class=""><span>}&nbsp;&nbsp;</span></li><li class="alt"><span>zle&nbsp;-N&nbsp;sudo-command-line&nbsp;&nbsp;</span></li><li class=""><span>#定义快捷键为：&nbsp;[Esc]&nbsp;[Esc]&nbsp;&nbsp;</span></li><li class="alt"><span>bindkey&nbsp;"\e\e"&nbsp;sudo-command-line&nbsp;&nbsp;</span></li><li class=""><span>#}}}&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>#命令别名&nbsp;{{{&nbsp;&nbsp;</span></li><li class="alt"><span>alias&nbsp;cp='cp&nbsp;-i'&nbsp;&nbsp;</span></li><li class=""><span>alias&nbsp;mv='mv&nbsp;-i'&nbsp;&nbsp;</span></li><li class="alt"><span>alias&nbsp;rm='rm&nbsp;-i'&nbsp;&nbsp;</span></li><li class=""><span>alias&nbsp;ls='ls&nbsp;-F&nbsp;--color=auto'&nbsp;&nbsp;</span></li><li class="alt"><span>alias&nbsp;ll='ls&nbsp;-al'&nbsp;&nbsp;</span></li><li class=""><span>alias&nbsp;grep='grep&nbsp;--color=auto'&nbsp;&nbsp;</span></li><li class="alt"><span>alias&nbsp;la='ls&nbsp;-a'&nbsp;&nbsp;</span></li><li class=""><span>alias&nbsp;pacman='sudo&nbsp;pacman-color'&nbsp;&nbsp;</span></li><li class="alt"><span>alias&nbsp;p='sudo&nbsp;pacman-color'&nbsp;&nbsp;</span></li><li class=""><span>alias&nbsp;y='yaourt'&nbsp;&nbsp;</span></li><li class="alt"><span>alias&nbsp;h='htop'&nbsp;&nbsp;</span></li><li class=""><span>alias&nbsp;vim='sudo&nbsp;vim'&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>#[Esc][h]&nbsp;man&nbsp;当前命令时，显示简短说明&nbsp;&nbsp;</span></li><li class="alt"><span>alias&nbsp;run-help&nbsp;&gt;&amp;/dev/null&nbsp;&amp;&amp;&nbsp;unalias&nbsp;run-help&nbsp;&nbsp;</span></li><li class=""><span>autoload&nbsp;run-help&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>#历史命令&nbsp;top10&nbsp;&nbsp;</span></li><li class="alt"><span>alias&nbsp;top10='print&nbsp;-l&nbsp;&nbsp;${(o)history%%&nbsp;*}&nbsp;|&nbsp;uniq&nbsp;-c&nbsp;|&nbsp;sort&nbsp;-nr&nbsp;|&nbsp;head&nbsp;-n&nbsp;10'&nbsp;&nbsp;</span></li><li class=""><span>#}}}&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>#路径别名&nbsp;{{{&nbsp;&nbsp;</span></li><li class="alt"><span>#进入相应的路径时只要&nbsp;cd&nbsp;~xxx&nbsp;&nbsp;</span></li><li class=""><span>hash&nbsp;-d&nbsp;A="/media/ayu/dearest"&nbsp;&nbsp;</span></li><li class="alt"><span>hash&nbsp;-d&nbsp;H="/media/data/backup/ayu"&nbsp;&nbsp;</span></li><li class=""><span>hash&nbsp;-d&nbsp;E="/etc/"&nbsp;&nbsp;</span></li><li class="alt"><span>hash&nbsp;-d&nbsp;D="/home/ayumi/Documents"&nbsp;&nbsp;</span></li><li class=""><span>#}}}&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>##for&nbsp;Emacs&nbsp;{{{&nbsp;&nbsp;</span></li><li class="alt"><span>#在&nbsp;Emacs终端&nbsp;中使用&nbsp;Zsh&nbsp;的一些设置&nbsp;不推荐在&nbsp;Emacs&nbsp;中使用它&nbsp;&nbsp;</span></li><li class=""><span>#if&nbsp;[[&nbsp;"$TERM"&nbsp;==&nbsp;"dumb"&nbsp;]];&nbsp;then&nbsp;&nbsp;</span></li><li class="alt"><span>#setopt&nbsp;No_zle&nbsp;&nbsp;</span></li><li class=""><span>#PROMPT='%n@%M&nbsp;%/&nbsp;&nbsp;</span></li><li class="alt"><span>#&gt;&gt;'&nbsp;&nbsp;</span></li><li class=""><span>#alias&nbsp;ls='ls&nbsp;-F'&nbsp;&nbsp;</span></li><li class="alt"><span>#fi&nbsp;&nbsp;</span></li><li class=""><span>#}}}&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>#{{{自定义补全&nbsp;&nbsp;</span></li><li class="alt"><span>#补全&nbsp;ping&nbsp;&nbsp;</span></li><li class=""><span>zstyle&nbsp;':completion:*:ping:*'&nbsp;hosts&nbsp;192.168.1.{1,50,51,100,101}&nbsp;www.google.com&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>#补全&nbsp;ssh&nbsp;scp&nbsp;sftp&nbsp;等&nbsp;&nbsp;</span></li><li class="alt"><span>#zstyle&nbsp;-e&nbsp;':completion::*:*:*:hosts'&nbsp;hosts&nbsp;'reply=(${=${${(f)"$(cat&nbsp;{/etc/ssh_,~/.ssh/known_}hosts(|2)(N)&nbsp;/dev/null)"}%%[#&nbsp;]*}//,/&nbsp;})'&nbsp;&nbsp;</span></li><li class=""><span>#}}}&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>#{{{&nbsp;F1&nbsp;计算器&nbsp;&nbsp;</span></li><li class="alt"><span>arith-eval-echo()&nbsp;{&nbsp;&nbsp;</span></li><li class=""><span>LBUFFER="${LBUFFER}echo&nbsp;\$((&nbsp;"&nbsp;&nbsp;</span></li><li class="alt"><span>RBUFFER="&nbsp;))$RBUFFER"&nbsp;&nbsp;</span></li><li class=""><span>}&nbsp;&nbsp;</span></li><li class="alt"><span>zle&nbsp;-N&nbsp;arith-eval-echo&nbsp;&nbsp;</span></li><li class=""><span>bindkey&nbsp;"^[[11~"&nbsp;arith-eval-echo&nbsp;&nbsp;</span></li><li class="alt"><span>#}}}&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;</span></li><li class="alt"><span>####{{{&nbsp;&nbsp;</span></li><li class=""><span>function&nbsp;timeconv&nbsp;{&nbsp;date&nbsp;-d&nbsp;@$1&nbsp;+"%Y-%m-%d&nbsp;%T"&nbsp;}&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>#&nbsp;}}}&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>zmodload&nbsp;zsh/mathfunc&nbsp;&nbsp;</span></li><li class="alt"><span>autoload&nbsp;-U&nbsp;zsh-mime-setup&nbsp;&nbsp;</span></li><li class=""><span>zsh-mime-setup&nbsp;&nbsp;</span></li><li class="alt"><span>setopt&nbsp;EXTENDED_GLOB&nbsp;&nbsp;</span></li><li class=""><span>#autoload&nbsp;-U&nbsp;promptinit&nbsp;&nbsp;</span></li><li class="alt"><span>#promptinit&nbsp;&nbsp;</span></li><li class=""><span>#prompt&nbsp;redhat&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>setopt&nbsp;correctall&nbsp;&nbsp;</span></li><li class="alt"><span>autoload&nbsp;compinstall&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;</span></li><li class="alt"><span>#漂亮又实用的命令高亮界面&nbsp;&nbsp;</span></li><li class=""><span>setopt&nbsp;extended_glob&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;TOKENS_FOLLOWED_BY_COMMANDS=('|'&nbsp;'||'&nbsp;';'&nbsp;'&amp;'&nbsp;'&amp;&amp;'&nbsp;'sudo'&nbsp;'do'&nbsp;'time'&nbsp;'strace')&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;recolor-cmd()&nbsp;{&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;region_highlight=()&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;colorize=true&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;start_pos=0&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;arg&nbsp;in&nbsp;${(z)BUFFER};&nbsp;do&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;((start_pos+=${#BUFFER[$start_pos+1,-1]}-${#${BUFFER[$start_pos+1,-1]##&nbsp;#}}))&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;((end_pos=$start_pos+${#arg}))&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;$colorize;&nbsp;then&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;colorize=false&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;res=$(LC_ALL=C&nbsp;builtin&nbsp;type&nbsp;$arg&nbsp;2&gt;/dev/null)&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;$res&nbsp;in&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*'reserved&nbsp;word'*)&nbsp;&nbsp;&nbsp;style="fg=magenta,bold";;&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*'alias&nbsp;for'*)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;style="fg=cyan,bold";;&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*'shell&nbsp;builtin'*)&nbsp;&nbsp;&nbsp;style="fg=yellow,bold";;&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*'shell&nbsp;function'*)&nbsp;&nbsp;style='fg=green,bold';;&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*"$arg&nbsp;is"*)&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[[&nbsp;$arg&nbsp;=&nbsp;'sudo'&nbsp;]]&nbsp;&amp;&amp;&nbsp;style="fg=red,bold"&nbsp;||&nbsp;style="fg=blue,bold";;&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;style='none,bold';;&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;esac&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;region_highlight+=("$start_pos&nbsp;$end_pos&nbsp;$style")&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fi&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[[&nbsp;${${TOKENS_FOLLOWED_BY_COMMANDS[(r)${arg//|/\|}]}:+yes}&nbsp;=&nbsp;'yes'&nbsp;]]&nbsp;&amp;&amp;&nbsp;colorize=true&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;start_pos=$end_pos&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;done&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;}&nbsp;&nbsp;</span></li><li class=""><span>check-cmd-self-insert()&nbsp;{&nbsp;zle&nbsp;.self-insert&nbsp;&amp;&amp;&nbsp;recolor-cmd&nbsp;}&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;check-cmd-backward-delete-char()&nbsp;{&nbsp;zle&nbsp;.backward-delete-char&nbsp;&amp;&amp;&nbsp;recolor-cmd&nbsp;}&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;zle&nbsp;-N&nbsp;self-insert&nbsp;check-cmd-self-insert&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;zle&nbsp;-N&nbsp;backward-delete-char&nbsp;check-cmd-backward-delete-char&nbsp;&nbsp;&nbsp;</span></li></ol><div class="save_code tracking-ad" data-mod="popu_249" style="display: none;"><a href="javascript:;"><img src="./终极 Shell——ZSH - 专注于互联网架构技术，努力成为一名架构师 - 博客频道 - CSDN.NET_files/save_snippets.png"></a></div></div><pre name="code" class="plain" style="display: none;">alias cls='clear'
+alias ll='ls -l'
+alias la='ls -a'
+alias vi='vim'
+alias javac="javac -J-Dfile.encoding=utf8"
+alias grep="grep --color=auto"
+alias -s html=mate   # 在命令行直接输入后缀为 html 的文件名，会在 TextMate 中打开
+alias -s rb=mate     # 在命令行直接输入 ruby 文件，会在 TextMate 中打开
+alias -s py=vi       # 在命令行直接输入 python 文件，会用 vim 中打开，以下类似
+alias -s js=vi
+alias -s c=vi
+alias -s java=vi
+alias -s txt=vi
+alias -s gz='tar -xzvf'
+alias -s tgz='tar -xzvf'
+alias -s zip='unzip'
+alias -s bz2='tar -xjvf'
+#color{{{
+autoload colors
+colors
+ 
+for color in RED GREEN YELLOW BLUE MAGENTA CYAN WHITE; do
+eval _$color='%{$terminfo[bold]$fg[${(L)color}]%}'
+eval $color='%{$fg[${(L)color}]%}'
+(( count = $count + 1 ))
+done
+FINISH="%{$terminfo[sgr0]%}"
+#}}}
+ 
+#命令提示符
+RPROMPT=$(echo "$RED%D %T$FINISH")
+PROMPT=$(echo "$CYAN%n@$YELLOW%M:$GREEN%/$_YELLOW&gt;$FINISH ")
+ 
+#PROMPT=$(echo "$BLUE%M$GREEN%/
+#$CYAN%n@$BLUE%M:$GREEN%/$_YELLOW&gt;&gt;&gt;$FINISH ")
+#标题栏、任务栏样式{{{
+case $TERM in (*xterm*|*rxvt*|(dt|k|E)term)
+precmd () { print -Pn "\e]0;%n@%M//%/\a" }
+preexec () { print -Pn "\e]0;%n@%M//%/\ $1\a" }
+;;
+esac
+#}}}
+ 
+#编辑器
+export EDITOR=vim
+#输入法
+export XMODIFIERS="@im=ibus"
+export QT_MODULE=ibus
+export GTK_MODULE=ibus
+#关于历史纪录的配置 {{{
+#历史纪录条目数量
+export HISTSIZE=10000
+#注销后保存的历史纪录条目数量
+export SAVEHIST=10000
+#历史纪录文件
+export HISTFILE=~/.zhistory
+#以附加的方式写入历史纪录
+setopt INC_APPEND_HISTORY
+#如果连续输入的命令相同，历史纪录中只保留一个
+setopt HIST_IGNORE_DUPS
+#为历史纪录中的命令添加时间戳
+setopt EXTENDED_HISTORY      
+ 
+#启用 cd 命令的历史纪录，cd -[TAB]进入历史路径
+setopt AUTO_PUSHD
+#相同的历史路径只保留一个
+setopt PUSHD_IGNORE_DUPS
+ 
+#在命令前添加空格，不将此命令添加到纪录文件中
+#setopt HIST_IGNORE_SPACE
+#}}}
+ 
+#每个目录使用独立的历史纪录{{{
+cd() {
+builtin cd "$@"                             # do actual cd
+fc -W                                       # write current history  file
+local HISTDIR="$HOME/.zsh_history$PWD"      # use nested folders for history
+if  [ ! -d "$HISTDIR" ] ; then          # create folder if needed
+mkdir -p "$HISTDIR"
+fi
+export HISTFILE="$HISTDIR/zhistory"     # set new history file
+touch $HISTFILE
+local ohistsize=$HISTSIZE
+HISTSIZE=0                              # Discard previous dir's history
+HISTSIZE=$ohistsize                     # Prepare for new dir's history
+fc -R                                       #read from current histfile
+}
+mkdir -p $HOME/.zsh_history$PWD
+export HISTFILE="$HOME/.zsh_history$PWD/zhistory"
+ 
+function allhistory { cat $(find $HOME/.zsh_history -name zhistory) }
+function convhistory {
+sort $1 | uniq |
+sed 's/^:\([ 0-9]*\):[0-9]*;\(.*\)/\1::::::\2/' |
+awk -F"::::::" '{ $1=strftime("%Y-%m-%d %T",$1) "|"; print }'
+}
+#使用 histall 命令查看全部历史纪录
+function histall { convhistory =(allhistory) |
+sed '/^.\{20\} *cd/i\\' }
+#使用 hist 查看当前目录历史纪录
+function hist { convhistory $HISTFILE }
+ 
+#全部历史纪录 top50
+function top50 { allhistory | awk -F':[ 0-9]*:[0-9]*;' '{ $1="" ; print }' | sed 's/ /\n/g' | sed '/^$/d' | sort | uniq -c | sort -nr | head -n 50 }
+ 
+#}}}
+ 
+#杂项 {{{
+#允许在交互模式中使用注释  例如：
+#cmd #这是注释
+setopt INTERACTIVE_COMMENTS      
+ 
+#启用自动 cd，输入目录名回车进入目录
+#稍微有点混乱，不如 cd 补全实用
+setopt AUTO_CD
+ 
+#扩展路径
+#/v/c/p/p =&gt; /var/cache/pacman/pkg
+setopt complete_in_word
+ 
+#禁用 core dumps
+limit coredumpsize 0
+ 
+#Emacs风格 键绑定
+bindkey -e
+#bindkey -v
+#设置 [DEL]键 为向后删除
+#bindkey "\e[3~" delete-char
+ 
+#以下字符视为单词的一部分
+WORDCHARS='*?_-[]~=&amp;;!#$%^(){}&lt;&gt;'
+#}}}
+ 
+#自动补全功能 {{{
+setopt AUTO_LIST
+setopt AUTO_MENU
+#开启此选项，补全时会直接选中菜单项
+#setopt MENU_COMPLETE
+ 
+autoload -U compinit
+compinit
+ 
+#自动补全缓存
+#zstyle ':completion::complete:*' use-cache on
+#zstyle ':completion::complete:*' cache-path .zcache
+#zstyle ':completion:*:cd:*' ignore-parents parent pwd
+ 
+#自动补全选项
+zstyle ':completion:*' verbose yes
+zstyle ':completion:*' menu select
+zstyle ':completion:*:*:default' force-list always
+zstyle ':completion:*' select-prompt '%SSelect:  lines: %L  matches: %M  [%p]'
+ 
+zstyle ':completion:*:match:*' original only
+zstyle ':completion::prefix-1:*' completer _complete
+zstyle ':completion:predict:*' completer _complete
+zstyle ':completion:incremental:*' completer _complete _correct
+zstyle ':completion:*' completer _complete _prefix _correct _prefix _match _approximate
+ 
+#路径补全
+zstyle ':completion:*' expand 'yes'
+zstyle ':completion:*' squeeze-shlashes 'yes'
+zstyle ':completion::complete:*' '\\'
+ 
+#彩色补全菜单
+eval $(dircolors -b)
+export ZLSCOLORS="${LS_COLORS}"
+zmodload zsh/complist
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
+ 
+#修正大小写
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
+#错误校正
+zstyle ':completion:*' completer _complete _match _approximate
+zstyle ':completion:*:match:*' original only
+zstyle ':completion:*:approximate:*' max-errors 1 numeric
+ 
+#kill 命令补全
+compdef pkill=kill
+compdef pkill=killall
+zstyle ':completion:*:*:kill:*' menu yes select
+zstyle ':completion:*:*:*:*:processes' force-list always
+zstyle ':completion:*:processes' command 'ps -au$USER'
+ 
+#补全类型提示分组
+zstyle ':completion:*:matches' group 'yes'
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*:options' description 'yes'
+zstyle ':completion:*:options' auto-description '%d'
+zstyle ':completion:*:descriptions' format $'\e[01;33m -- %d --\e[0m'
+zstyle ':completion:*:messages' format $'\e[01;35m -- %d --\e[0m'
+zstyle ':completion:*:warnings' format $'\e[01;31m -- No Matches Found --\e[0m'
+zstyle ':completion:*:corrections' format $'\e[01;32m -- %d (errors: %e) --\e[0m'
+ 
+# cd ~ 补全顺序
+zstyle ':completion:*:-tilde-:*' group-order 'named-directories' 'path-directories' 'users' 'expand'
+#}}}
+ 
+##行编辑高亮模式 {{{
+# Ctrl+@ 设置标记，标记和光标点之间为 region
+zle_highlight=(region:bg=magenta #选中区域
+special:bold      #特殊字符
+isearch:underline)#搜索时使用的关键字
+#}}}
+ 
+##空行(光标在行首)补全 "cd " {{{
+user-complete(){
+case $BUFFER in
+"" )                       # 空行填入 "cd "
+BUFFER="cd "
+zle end-of-line
+zle expand-or-complete
+;;
+"cd --" )                  # "cd --" 替换为 "cd +"
+BUFFER="cd +"
+zle end-of-line
+zle expand-or-complete
+;;
+"cd +-" )                  # "cd +-" 替换为 "cd -"
+BUFFER="cd -"
+zle end-of-line
+zle expand-or-complete
+;;
+* )
+zle expand-or-complete
+;;
+esac
+}
+zle -N user-complete
+bindkey "\t" user-complete
+#}}}
+ 
+##在命令前插入 sudo {{{
+#定义功能
+sudo-command-line() {
+[[ -z $BUFFER ]] &amp;&amp; zle up-history
+[[ $BUFFER != sudo\ * ]] &amp;&amp; BUFFER="sudo $BUFFER"
+zle end-of-line                 #光标移动到行末
+}
+zle -N sudo-command-line
+#定义快捷键为： [Esc] [Esc]
+bindkey "\e\e" sudo-command-line
+#}}}
+ 
+#命令别名 {{{
+alias cp='cp -i'
+alias mv='mv -i'
+alias rm='rm -i'
+alias ls='ls -F --color=auto'
+alias ll='ls -al'
+alias grep='grep --color=auto'
+alias la='ls -a'
+alias pacman='sudo pacman-color'
+alias p='sudo pacman-color'
+alias y='yaourt'
+alias h='htop'
+alias vim='sudo vim'
+ 
+#[Esc][h] man 当前命令时，显示简短说明
+alias run-help &gt;&amp;/dev/null &amp;&amp; unalias run-help
+autoload run-help
+ 
+#历史命令 top10
+alias top10='print -l  ${(o)history%% *} | uniq -c | sort -nr | head -n 10'
+#}}}
+ 
+#路径别名 {{{
+#进入相应的路径时只要 cd ~xxx
+hash -d A="/media/ayu/dearest"
+hash -d H="/media/data/backup/ayu"
+hash -d E="/etc/"
+hash -d D="/home/ayumi/Documents"
+#}}}
+ 
+##for Emacs {{{
+#在 Emacs终端 中使用 Zsh 的一些设置 不推荐在 Emacs 中使用它
+#if [[ "$TERM" == "dumb" ]]; then
+#setopt No_zle
+#PROMPT='%n@%M %/
+#&gt;&gt;'
+#alias ls='ls -F'
+#fi
+#}}}
+ 
+#{{{自定义补全
+#补全 ping
+zstyle ':completion:*:ping:*' hosts 192.168.1.{1,50,51,100,101} www.google.com
+ 
+#补全 ssh scp sftp 等
+#zstyle -e ':completion::*:*:*:hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
+#}}}
+ 
+#{{{ F1 计算器
+arith-eval-echo() {
+LBUFFER="${LBUFFER}echo \$(( "
+RBUFFER=" ))$RBUFFER"
+}
+zle -N arith-eval-echo
+bindkey "^[[11~" arith-eval-echo
+#}}}
+ 
+####{{{
+function timeconv { date -d @$1 +"%Y-%m-%d %T" }
+ 
+# }}}
+ 
+zmodload zsh/mathfunc
+autoload -U zsh-mime-setup
+zsh-mime-setup
+setopt EXTENDED_GLOB
+#autoload -U promptinit
+#promptinit
+#prompt redhat
+ 
+setopt correctall
+autoload compinstall
+ 
+#漂亮又实用的命令高亮界面
+setopt extended_glob
+ TOKENS_FOLLOWED_BY_COMMANDS=('|' '||' ';' '&amp;' '&amp;&amp;' 'sudo' 'do' 'time' 'strace')
+ 
+ recolor-cmd() {
+     region_highlight=()
+     colorize=true
+     start_pos=0
+     for arg in ${(z)BUFFER}; do
+         ((start_pos+=${#BUFFER[$start_pos+1,-1]}-${#${BUFFER[$start_pos+1,-1]## #}}))
+         ((end_pos=$start_pos+${#arg}))
+         if $colorize; then
+             colorize=false
+             res=$(LC_ALL=C builtin type $arg 2&gt;/dev/null)
+             case $res in
+                 *'reserved word'*)   style="fg=magenta,bold";;
+                 *'alias for'*)       style="fg=cyan,bold";;
+                 *'shell builtin'*)   style="fg=yellow,bold";;
+                 *'shell function'*)  style='fg=green,bold';;
+                 *"$arg is"*)
+                     [[ $arg = 'sudo' ]] &amp;&amp; style="fg=red,bold" || style="fg=blue,bold";;
+                 *)                   style='none,bold';;
+             esac
+             region_highlight+=("$start_pos $end_pos $style")
+         fi
+         [[ ${${TOKENS_FOLLOWED_BY_COMMANDS[(r)${arg//|/\|}]}:+yes} = 'yes' ]] &amp;&amp; colorize=true
+         start_pos=$end_pos
+     done
+ }
+check-cmd-self-insert() { zle .self-insert &amp;&amp; recolor-cmd }
+ check-cmd-backward-delete-char() { zle .backward-delete-char &amp;&amp; recolor-cmd }
+ 
+ zle -N self-insert check-cmd-self-insert
+ zle -N backward-delete-char check-cmd-backward-delete-char&nbsp;</pre><div class="dp-highlighter bg_plain"><div class="bar"><div class="tools"><b>[plain]</b> <a href="http://blog.csdn.net/iloveyin/article/details/49522449#" class="ViewSource" title="view plain" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><span data-mod="popu_168"> <a href="http://blog.csdn.net/iloveyin/article/details/49522449#" class="CopyToClipboard" title="copy" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;">copy</a><div style="position: absolute; left: 528px; top: 8079px; width: 28px; height: 15px; z-index: 99;"><embed id="ZeroClipboardMovie_2" src="http://static.blog.csdn.net/scripts/ZeroClipboard/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="28" height="15" name="ZeroClipboardMovie_2" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=2&amp;width=28&amp;height=15" wmode="transparent"></div></span><span data-mod="popu_169"> <a href="http://blog.csdn.net/iloveyin/article/details/49522449#" class="PrintSource" title="print" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a></span><a href="http://blog.csdn.net/iloveyin/article/details/49522449#" class="About" title="?" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a></div></div><ol start="1"><li class="alt"><span><span>#&nbsp;man&nbsp;page&nbsp;highlight&nbsp;&nbsp;</span></span></li><li class=""><span>export&nbsp;LESS_TERMCAP_mb=$'\E[01;31m'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;begin&nbsp;blinking&nbsp;&nbsp;</span></li><li class="alt"><span>export&nbsp;LESS_TERMCAP_md=$'\E[01;38;5;74m'&nbsp;&nbsp;#&nbsp;begin&nbsp;bold&nbsp;&nbsp;</span></li><li class=""><span>export&nbsp;LESS_TERMCAP_me=$'\E[0m'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;end&nbsp;mode&nbsp;&nbsp;</span></li><li class="alt"><span>export&nbsp;LESS_TERMCAP_se=$'\E[0m'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;end&nbsp;standout-mode&nbsp;&nbsp;</span></li><li class=""><span>export&nbsp;LESS_TERMCAP_so=$'\E[38;5;246m'&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;begin&nbsp;standout-mode&nbsp;-&nbsp;info&nbsp;box&nbsp;&nbsp;</span></li><li class="alt"><span>export&nbsp;LESS_TERMCAP_ue=$'\E[0m'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;end&nbsp;underline&nbsp;&nbsp;</span></li><li class=""><span>export&nbsp;LESS_TERMCAP_us=$'\E[04;38;5;146m'&nbsp;#&nbsp;begin&nbsp;underline&nbsp;&nbsp;</span></li></ol><div class="save_code tracking-ad" data-mod="popu_249"><a href="javascript:;"><img src="./终极 Shell——ZSH - 专注于互联网架构技术，努力成为一名架构师 - 博客频道 - CSDN.NET_files/save_snippets.png"></a></div></div><pre name="code" class="plain" style="display: none;"># man page highlight
+export LESS_TERMCAP_mb=$'\E[01;31m'       # begin blinking
+export LESS_TERMCAP_md=$'\E[01;38;5;74m'  # begin bold
+export LESS_TERMCAP_me=$'\E[0m'           # end mode
+export LESS_TERMCAP_se=$'\E[0m'           # end standout-mode
+export LESS_TERMCAP_so=$'\E[38;5;246m'    # begin standout-mode - info box
+export LESS_TERMCAP_ue=$'\E[0m'           # end underline
+export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline</pre><br>
+<pre></pre>
+</div>
+<div>
+<div>
+<p>zsh 的牛粪之处在于不仅可以设置通用别名，还能针对文件类型设置对应的打开程序，比如：</p>
+<p>alias -s html=mate，意思就是你在命令行输入 hello.html，zsh会为你自动打开 TextMat 并读取 hello.html； alias -s gz='tar -xzvf'，表示自动解压后缀为 gz 的压缩包。</p>
+<p>总之，只有想不到，木有做不到。</p>
+<p>设置完环境变量和别名之后，基本上就可以用了，如果你是个主题控，还可以玩玩 zsh 的主题。在 .zshrc 里找到ZSH_THEME，就可以设置主题了，默认主题是：</p>
+<p>ZSH_THEME=”robbyrussell”</p>
+<p>oh my zsh 提供了数十种主题，相关文件在~/.oh-my-zsh/themes目录下，你可以随意选择，也可以编辑主题满足自己的变态需求，我采用了默认主题robbyrussell，不过做了一点小小的改动：</p>
+<div class="highlight">
+<pre><code class="language-text">PROMPT='%{$fg_bold[red]%}➜ %{$fg_bold[green]%}%p%{$fg[cyan]%}%d %{$fg_bold[blue]%}$(git_prompt_info)%{$fg_bold[blue]%}% %{$reset_color%}&gt;'
+#PROMPT='%{$fg_bold[red]%}➜ %{$fg_bold[green]%}%p %{$fg[cyan]%}%c %{$fg_bold[blue]%}$(git_prompt_info)%{$fg_bold[blue]%} % %{$reset_color%}'
+</code></pre>
+</div>
+<p>对照原来的版本，我把 c 改为 d，c 表示当前目录，d 表示绝对路径，另外在末尾增加了一个「 &gt; 」，改完之后的效果是这样的：</p>
+<p>大家可以尝试进行改造，也算个趣事。</p>
+<p>最后我们来说说插件。</p>
+<u><strong>插件</strong></u>
+<p>oh my zsh 项目提供了完善的插件体系，相关的文件在~/.oh-my-zsh/plugins目录下，默认提供了100多种，大家可以根据自己的实际学习和工作环境采用，想了解每个插件的功能，只要打开相关目录下的 zsh 文件看一下就知道了。插件也是在.zshrc里配置，找到plugins关键字，你就可以加载自己的插件了，系统默认加载 git ，你可以在后面追加内容，如下：</p>
+<div class="highlight">
+<pre><code class="language-text">plugins=(git textmate ruby autojump osx mvn gradle)
+</code></pre>
+</div>
+<p>下面简单介绍几个：</p>
+<p>1、git：当你处于一个 git 受控的目录下时，Shell 会明确显示 「git」和 branch，如上图所示，另外对 git 很多命令进行了简化，例如 gco=’git checkout’、gd=’git diff’、gst=’git status’、g=’git’等等，熟练使用可以大大减少 git 的命令长度，命令内容可以参考~/.oh-my-zsh/plugins/git/git.plugin.zsh</p>
+<p>2、textmate：mr可以创建 ruby 的框架项目，tm finename 可以用 textmate 打开指定文件。</p>
+<p>3、osx：tab 增强，quick-look filename 可以直接预览文件，man-preview grep 可以生成 grep手册 的pdf 版本等。</p>
+<p>4、autojump：zsh 和 autojump 的组合形成了 zsh 下最强悍的插件，今天我们主要说说这货。</p>
+<p>首先安装autojump，如果你用 Mac，可以使用 brew 安装：</p>
+<div class="highlight">
+<pre><code class="language-text">brew install autojump
+</code></pre>
+</div>
+<p>如果是 Linux，去下载 autojump 的最新版本，比如：</p>
+<div class="highlight">
+<pre><code class="language-text">wget https://github.com/downloads/joelthelion/autojump/autojump_v21.1.2.tar.gz
+</code></pre>
+</div>
+<p>解压缩后进入目录，执行</p>
+<div class="highlight">
+<pre><code class="language-text">./install.sh
+</code></pre>
+</div>
+<p>最后把以下代码加入.zshrc：</p>
+<div class="highlight">
+<pre><code class="language-text">[[ -s ~/.autojump/etc/profile.d/autojump.sh ]] &amp;&amp; . ~/.autojump/etc/profile.d/autojump.sh
+</code></pre>
+</div>
+<p>至此，安装、配置、插件三位一体，终极 Shell 全面登场。退出终端会话重新登录，开始感受 zsh 的训疾如风！</p>
+<strong><u>使用 zsh</u></strong>
+<p>1、兼容 bash，原来使用 bash 的兄弟切换过来毫无压力，该咋用咋用。</p>
+<p>2、强大的历史纪录功能，输入 grep 然后用上下箭头可以翻阅你执行的所有 grep 命令。</p>
+<p>3、智能拼写纠正，输入gtep mactalk * -R，系统会提示：zsh: correct ‘gtep’ to ‘grep’ [nyae]? 比妹纸贴心吧，她们向来都是让你猜的……</p>
+<p>4、各种补全：路径补全、命令补全，命令参数补全，插件内容补全等等。触发补全只需要按一下或两下 tab 键，补全项可以使用 ctrl+n/p/f/b上下左右切换。比如你想杀掉 <a href="http://lib.csdn.net/base/17" class="replace_word" title="Java EE知识库" target="_blank" style="color:#df3434; font-weight:bold;">Java</a> 的进程，只需要输入 kill java + tab键，如果只有一个 java 进程，zsh 会自动替换为进程的 pid，如果有多个则会出现选择项供你选择。ssh + 空格 + 两个tab键，zsh会列出所有访问过的主机和用户名进行补全</p>
+<p>5、智能跳转，安装了autojump之后，zsh 会自动记录你访问过的目录，通过 j + 目录名 可以直接进行目录跳转，而且目录名支持模糊匹配和自动补全，例如你访问过<a href="http://lib.csdn.net/base/20" class="replace_word" title="Hadoop知识库" target="_blank" style="color:#df3434; font-weight:bold;">Hadoop</a>-1.0.0目录，输入j hado 即可正确跳转。j –stat 可以看你的历史路径库。</p>
+<p>6、目录浏览和跳转：输入 d，即可列出你在这个会话里访问的目录列表，输入列表前的序号，即可直接跳转。</p>
+<p>7、在当前目录下输入 .. 或 … ，或直接输入当前目录名都可以跳转，你甚至不再需要输入 cd 命令了。</p>
+<p>8、通配符搜索：ls -l **/*.sh，可以递归显示当前目录下的 shell 文件，文件少时可以代替 find，文件太多就歇菜了。</p>
+<p>9、更强的别名：请参考配置一节。</p>
+<p>10、插件支持：请参考插件一节。</p>
+</div>
+<br>
+</div>
+<div><br>
+</div>
+   
+</div>
+
+
+
+
+<!-- Baidu Button BEGIN -->
+
+
+
+
+<div class="bdsharebuttonbox tracking-ad bdshare-button-style0-16" style="float: right;" data-mod="popu_172" data-bd-bind="1471514769069">
+<a href="http://blog.csdn.net/iloveyin/article/details/49522449#" class="bds_more" data-cmd="more" style="background-position:0 0 !important; background-image: url(http://bdimg.share.baidu.com/static/api/img/share/icons_0_16.png?v=d754dcc0.png) !important"></a>
+<a href="http://blog.csdn.net/iloveyin/article/details/49522449#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间" style="background-position:0 -52px !important"></a>
+<a href="http://blog.csdn.net/iloveyin/article/details/49522449#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博" style="background-position:0 -104px !important"></a>
+<a href="http://blog.csdn.net/iloveyin/article/details/49522449#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博" style="background-position:0 -260px !important"></a>
+<a href="http://blog.csdn.net/iloveyin/article/details/49522449#" class="bds_renren" data-cmd="renren" title="分享到人人网" style="background-position:0 -208px !important"></a>
+<a href="http://blog.csdn.net/iloveyin/article/details/49522449#" class="bds_weixin" data-cmd="weixin" title="分享到微信" style="background-position:0 -1612px !important"></a>
+</div>
+<script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "1", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "16" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
+<!-- Baidu Button END -->
+
+   <link rel="stylesheet" href="./终极 Shell——ZSH - 专注于互联网架构技术，努力成为一名架构师 - 博客频道 - CSDN.NET_files/blog_detail.css">
+
+    
+<!--172.16.140.13-->
+
+<!-- Baidu Button BEGIN -->
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=1536434" src="./终极 Shell——ZSH - 专注于互联网架构技术，努力成为一名架构师 - 博客频道 - CSDN.NET_files/bds_s_v2.js"></script>
+
+<script type="text/javascript">
+    document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+<!-- Baidu Button END -->
+
+ 
+
+        <div id="digg" articleid="49522449">
+            <dl id="btnDigg" class="digg digg_enable" onclick="btndigga();">
+               
+                 <dt>顶</dt>
+                <dd>0</dd>
+            </dl>
+           
+              
+            <dl id="btnBury" class="digg digg_enable" onclick="btnburya();">
+              
+                  <dt>踩</dt>
+                <dd>0</dd>               
+            </dl>
+            
+        </div>
+     <div class="tracking-ad" data-mod="popu_222"><a href="javascript:void(0);">&nbsp;</a>   </div>
+    <div class="tracking-ad" data-mod="popu_223"> <a href="javascript:void(0);">&nbsp;</a></div>
+    <script type="text/javascript">
+                function btndigga() {
+                    $(".tracking-ad[data-mod='popu_222'] a").click();
+                }
+                function btnburya() {
+                    $(".tracking-ad[data-mod='popu_223'] a").click();
+                }
+            </script>
+
+   <ul class="article_next_prev">
+                <li class="prev_article"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_shangyipian&#39;]);location.href=&#39;/iloveyin/article/details/49480539&#39;;">上一篇</span><a href="http://blog.csdn.net/iloveyin/article/details/49480539" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_shangyipian&#39;])">django sqlite3迁移到mysql</a></li>
+                <li class="next_article"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_xiayipian&#39;]);location.href=&#39;/iloveyin/article/details/49560559&#39;;">下一篇</span><a href="http://blog.csdn.net/iloveyin/article/details/49560559" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_xiayipian&#39;])">Django中与Html相关的filter</a></li>
+    </ul>
+
+    <div style="clear:both; height:10px;"></div>
+
+
+        <div class="similar_article" style="">
+                <h4>我的同类文章</h4>
+                <div class="similar_c" style="margin:20px 0px 0px 0px">
+                    <div class="similar_c_t">
+                                <label class="similar_cur">
+                                    <span style="cursor:pointer" onclick="GetCategoryArticles(&#39;911791&#39;,&#39;iloveyin&#39;,&#39;foot&#39;,&#39;49522449&#39;);">Linux<em>（44）</em></span>
+                                </label>
+                    </div>
+                   
+                    <div class="similar_wrap tracking-ad" data-mod="popu_141" style="max-height:195px;">
+                        <a href="http://blog.csdn.net/" style="display:none">http://blog.csdn.net</a>
+                        <ul class="similar_list fl"><li><em>•</em><a href="http://blog.csdn.net/iloveyin/article/details/49422245" id="foot_aritcle_49422245undefined5043217190142915" target="_blank" title="linux screen 命令详解">linux screen 命令详解</a><span>2015-10-26</span><label><i>阅读</i><b>194</b></label></li> <li><em>•</em><a href="http://blog.csdn.net/iloveyin/article/details/48785877" id="foot_aritcle_48785877undefined034104316381933675" target="_blank" title="Rsync安全配置">Rsync安全配置</a><span>2015-09-28</span><label><i>阅读</i><b>175</b></label></li> <li><em>•</em><a href="http://blog.csdn.net/iloveyin/article/details/48495523" id="foot_aritcle_48495523undefined37743953576069633" target="_blank" title="解决 CentOS 6.4 升级 Python2.7 后 Ibus 输入法无法使用问题">解决 CentOS 6.4 升级 Python2.7 后 Ibus 输入法无法使用问题</a><span>2015-09-16</span><label><i>阅读</i><b>188</b></label></li> <li><em>•</em><a href="http://blog.csdn.net/iloveyin/article/details/46982023" id="foot_aritcle_46982023undefined6731432995966218" target="_blank" title="ansible常用模块用法">ansible常用模块用法</a><span>2015-07-21</span><label><i>阅读</i><b>9148</b></label></li> <li><em>•</em><a href="http://blog.csdn.net/iloveyin/article/details/44941569" id="foot_aritcle_44941569undefined10905789751733286" target="_blank" title="压力测试工具ab 及 centos下单独安装方法">压力测试工具ab 及 centos下单独安装方法</a><span>2015-04-08</span><label><i>阅读</i><b>2027</b></label></li> </ul>
+
+                        <ul class="similar_list fr"><li><em>•</em><a href="http://blog.csdn.net/iloveyin/article/details/48807703" id="foot_aritcle_48807703undefined2927252754240022" target="_blank" title="linux命令行练级攻略">linux命令行练级攻略</a><span>2015-09-29</span><label><i>阅读</i><b>299</b></label></li> <li><em>•</em><a href="http://blog.csdn.net/iloveyin/article/details/48708053" id="foot_aritcle_48708053undefined1953261446502983" target="_blank" title="tcpdump抓包分析详解">tcpdump抓包分析详解</a><span>2015-09-24</span><label><i>阅读</i><b>326</b></label></li> <li><em>•</em><a href="http://blog.csdn.net/iloveyin/article/details/48490723" id="foot_aritcle_48490723undefined8080250779458187" target="_blank" title="linux服务器远程桌面配置-X2Go 方式">linux服务器远程桌面配置-X2Go 方式</a><span>2015-09-16</span><label><i>阅读</i><b>482</b></label></li> <li><em>•</em><a href="http://blog.csdn.net/iloveyin/article/details/44964113" id="foot_aritcle_44964113undefined8413926495224322" target="_blank" title="ssh port forwarding（ssh端口转发）">ssh port forwarding（ssh端口转发）</a><span>2015-04-09</span><label><i>阅读</i><b>375</b></label></li> <li><em>•</em><a href="http://blog.csdn.net/iloveyin/article/details/42964689" id="foot_aritcle_42964689undefined9833781464342211" target="_blank" title="linux shell脚本速记">linux shell脚本速记</a><span>2015-01-21</span><label><i>阅读</i><b>844</b></label></li> </ul>
+                    <a href="http://blog.csdn.net/iloveyin/article/category/911791" class="MoreArticle">更多文章</a></div>
+                </div>
+            </div>    
+    <script type="text/javascript">
+        $(function () {
+            GetCategoryArticles('911791', 'iloveyin','foot','49522449');
+        });
+    </script>
+      
+</div>
+<div id="suggest">
+
+</div>
+         <script language="javascript" type="text/javascript">     
+             $(function(){
+                 $.get("/iloveyin/svc/GetSuggestContent/49522449",function(data){
+                     $("#suggest").html(data);
+                 });     
+             });             
+         </script>  
+
+
+<style>
+.blog-ass-articl dd {
+color: #369;
+width: 99%; /*修改行*/
+float: left;
+overflow: hidden;
+font: normal normal 12px/23px "SimSun";
+height: 23px;
+margin: 0;
+padding: 0 0 0 10px;
+margin-right: 30px;
+background: url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px;
+}
+</style>
+
+ <link rel="stylesheet" href="./终极 Shell——ZSH - 专注于互联网架构技术，努力成为一名架构师 - 博客频道 - CSDN.NET_files/replace.css">
+
+<div id="relate" data-mod="popu_218" class="tracking-ad" style="display: block;">
+        <div class="relate_t">
+            <h3><span>参考知识库</span></h3>
+        </div>
+        <div class="relate_c"><dl class="relate_list"><dt><a target="_blank" href="http://lib.csdn.net/base/28"><img src="./终极 Shell——ZSH - 专注于互联网架构技术，努力成为一名架构师 - 博客频道 - CSDN.NET_files/1460535308634_634.jpg" alt="img"></a></dt><dd><h4><a target="_blank" href="http://lib.csdn.net/base/28">Git知识库</a></h4><p><label><span>367</span><em>关注</em><i>|</i><span>307</span><em>收录</em></label></p></dd></dl><dl class="relate_list"><dt><a target="_blank" href="http://lib.csdn.net/base/20"><img src="./终极 Shell——ZSH - 专注于互联网架构技术，努力成为一名架构师 - 博客频道 - CSDN.NET_files/1457509711701_701.jpg" alt="img"></a></dt><dd><h4><a target="_blank" href="http://lib.csdn.net/base/20">Hadoop知识库</a></h4><p><label><span>850</span><em>关注</em><i>|</i><span>438</span><em>收录</em></label></p></dd></dl><dl class="relate_list"><dt><a target="_blank" href="http://lib.csdn.net/base/11"><img src="./终极 Shell——ZSH - 专注于互联网架构技术，努力成为一名架构师 - 博客频道 - CSDN.NET_files/1452500783406_406.jpg" alt="img"></a></dt><dd><h4><a target="_blank" href="http://lib.csdn.net/base/11">Python知识库</a></h4><p><label><span>7491</span><em>关注</em><i>|</i><span>805</span><em>收录</em></label></p></dd></dl><dl class="relate_list"><dt><a target="_blank" href="http://lib.csdn.net/base/17"><img src="./终极 Shell——ZSH - 专注于互联网架构技术，努力成为一名架构师 - 博客频道 - CSDN.NET_files/1456818035722_722.jpg" alt="img"></a></dt><dd><h4><a target="_blank" href="http://lib.csdn.net/base/17">Java EE知识库</a></h4><p><label><span>1254</span><em>关注</em><i>|</i><span>581</span><em>收录</em></label></p></dd></dl><dl class="relate_list"><dt><a target="_blank" href="http://lib.csdn.net/base/12"><img src="./终极 Shell——ZSH - 专注于互联网架构技术，努力成为一名架构师 - 博客频道 - CSDN.NET_files/1453169124297_297.jpg" alt="img"></a></dt><dd><h4><a target="_blank" href="http://lib.csdn.net/base/12">Java SE知识库</a></h4><p><label><span>9513</span><em>关注</em><i>|</i><span>454</span><em>收录</em></label></p></dd></dl><dl class="relate_list"><dt><a target="_blank" href="http://lib.csdn.net/base/13"><img src="./终极 Shell——ZSH - 专注于互联网架构技术，努力成为一名架构师 - 博客频道 - CSDN.NET_files/1453701371636_636.jpg" alt="img"></a></dt><dd><h4><a target="_blank" href="http://lib.csdn.net/base/13">Java Web知识库</a></h4><p><label><span>9802</span><em>关注</em><i>|</i><span>1048</span><em>收录</em></label></p></dd></dl></div>
+</div>
+ 
+
+<dl class="blog-ass-articl" id="res-relatived"> 
+    <div class="embody embody_b" id="libkeyparent" style="display:none">
+            <span class="embody_t">更多资料请参考：</span>
+            <div class="embody_c" id="libkey"></div>
+    </div>
+
+
+     <dt><span>猜你在找</span></dt>    
+
+
+   
+
+
+    <div id="adCollege" style="width: 42%;float: left;"> 
+        <script src="./终极 Shell——ZSH - 专注于互联网架构技术，努力成为一名架构师 - 博客频道 - CSDN.NET_files/job_reco.js" type="text/javascript"></script> 
+        <script type="text/javascript">
+            csdn.position.showEdu({
+                sourceType: "blog",
+                searchType: "detail",
+                searchKey: "49522449",
+                username: "ligy118",
+                recordcount: "5",
+                containerId: "adCollege" //容器DIV的id。 
+            });
+        </script> 
+    <div class="tracking-ad" data-mod="popu_84"><dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;"><a href="http://edu.csdn.net/course/detail/2576" title="2016高薪Linux培训教程-vim命令和find命令入门到精通" strategy="v4:content" target="_blank">2016高薪Linux培训教程-vim命令和find命令入门到精通</a></dd><dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;"><a href="http://edu.csdn.net/course/detail/610" title="Linux操作系统及常用命令实战和进阶" strategy="v4:content" target="_blank">Linux操作系统及常用命令实战和进阶</a></dd><dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;"><a href="http://edu.csdn.net/course/detail/609" title="Linux操作系统及常用基础命令深入讲解" strategy="v4:content" target="_blank">Linux操作系统及常用基础命令深入讲解</a></dd><dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;"><a href="http://edu.csdn.net/course/detail/2572" title="2016高薪Linux培训教程-系统组成、文件系统及基础命令" strategy="v4:content" target="_blank">2016高薪Linux培训教程-系统组成、文件系统及基础命令</a></dd><dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;"><a href="http://edu.csdn.net/course/detail/2575" title="2016高薪Linux培训教程-shell脚本入门及正则表达式" strategy="v4:content" target="_blank">2016高薪Linux培训教程-shell脚本入门及正则表达式</a></dd></div></div>  
+
+    
+     <div id="res" data-mod="popu_36" class="tracking-ad" style="width: 42%; float: left; margin-right: 30px; display: block;"><dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px;"><a href="http://blog.csdn.net/u011646339/article/details/49123829" title="怎样设置一个适合自己的终端shell-zsh 终极cell -装逼神器" strategy="SearchAlgorithm">怎样设置一个适合自己的终端shell-zsh 终极cell -装逼神器</a></dd><dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px;"><a href="http://blog.csdn.net/gsls181711/article/details/51532648" title="终极Shell---zsh" strategy="SearchAlgorithm">终极Shell---zsh</a></dd><dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px;"><a href="http://blog.csdn.net/u013698822/article/details/39100083" title="好用的shellzsh" strategy="SearchAlgorithm">好用的shellzsh</a></dd><dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px;"><a href="http://blog.csdn.net/lissdy/article/details/11032683" title="ubuntu安装终极zsh" strategy="SearchAlgorithm">ubuntu安装终极zsh</a></dd><dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px;"><a href="http://blog.csdn.net/lihongli528628/article/details/34103039" title="MAC下切换到zsh打造有git提示的美化shell" strategy="SearchAlgorithm">MAC下切换到zsh打造有git提示的美化shell</a></dd></div>
+   
+</dl>
+
+
+<script type="text/javascript">
+    $(function () {
+        setTimeout(function () {
+            var searchtitletags = '终极 Shell——ZSH' + ',' + $("#tags").html();
+            searchService({
+                index: 'blog',
+                query: searchtitletags,
+                from: 5,
+                size: 5,
+                appendTo: '#res',
+                url: 'recommend',
+                his: 2,
+                client: "blog_cf_enhance",
+                tmpl: '<dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px;"><a href="#{ url }" title="#{ title }" strategy="#{ strategy }">#{ title }</a></dd>'
+            });
+        }, 500);
+    });    
+
+ </script>  
+
+    <div id="ad_cen">        
+<!-- 广告位开始 -->
+<ins data-revive-zoneid="71" data-revive-id="8c38e720de1c90a6f6ff52f3f89c4d57"></ins>
+<!-- 广告位结束 -->    </div>  
+
+<div class="comment_class">
+    <div id="comment_title" class="panel_head">
+        <span class="see_comment">查看评论</span><a name="comments"></a></div>
+    <div id="comment_list"><br>&nbsp;&nbsp;暂无评论<br><br><div class="clear"></div></div>
+    <div id="comment_bar">
+    </div>
+    <div id="comment_form"><a name="commentbox"></a><a name="reply"></a><a name="quote"></a><form action="http://blog.csdn.net/iloveyin/comment/submit?id=49522449" method="post" onsubmit="return subform(this);"><div class="commentform"><div class="panel_head">发表评论</div><ul><li class="left">用 户 名：</li><li class="right">ligy118</li></ul><ul><li class="left">评论内容：</li><li class="right" style="position:relative;"><div id="ubbtools"><a href="http://blog.csdn.net/iloveyin/article/details/49522449#insertcode" code="code"><img src="./终极 Shell——ZSH - 专注于互联网架构技术，努力成为一名架构师 - 博客频道 - CSDN.NET_files/code.gif" border="0" alt="插入代码" title="插入代码"></a></div><div id="lang_list" style="position: absolute; top: 28px; left: 0px; display: none;"><a class="long_name" href="http://blog.csdn.net/iloveyin/article/details/49522449#html">HTML/XML</a><a class="long_name" href="http://blog.csdn.net/iloveyin/article/details/49522449#objc">objective-c</a><a class="zhong_name" href="http://blog.csdn.net/iloveyin/article/details/49522449#delphi">Delphi</a><a class="zhong_name" href="http://blog.csdn.net/iloveyin/article/details/49522449#ruby">Ruby</a><a href="http://blog.csdn.net/iloveyin/article/details/49522449#php">PHP</a><a class="duan_name" href="http://blog.csdn.net/iloveyin/article/details/49522449#csharp">C#</a><a style=" border-right: none;" class="duan_name" href="http://blog.csdn.net/iloveyin/article/details/49522449#cpp">C++</a><a style=" border-bottom:none;" class="long_name" href="http://blog.csdn.net/iloveyin/article/details/49522449#javascript">JavaScript</a><a style=" border-bottom:none;" class="long_name" href="http://blog.csdn.net/iloveyin/article/details/49522449#vb">Visual Basic</a><a style=" border-bottom:none;" class="zhong_name" href="http://blog.csdn.net/iloveyin/article/details/49522449#python">Python</a><a style=" border-bottom:none;" class="zhong_name" href="http://blog.csdn.net/iloveyin/article/details/49522449#java">Java</a><a style="border-bottom:none;" class="duan_name" href="http://blog.csdn.net/iloveyin/article/details/49522449#css">CSS</a><a style="border-bottom:none;" class="duan_name" href="http://blog.csdn.net/iloveyin/article/details/49522449#sql">SQL</a><a style="border:none;" class="duan_name" href="http://blog.csdn.net/iloveyin/article/details/49522449#plain">其它</a></div><textarea class="comment_content" name="comment_content" id="comment_content" style="width: 400px; height: 200px;"></textarea></li></ul><ul><input type="hidden" id="comment_replyId" name="comment_replyId"><input type="hidden" id="comment_userId" name="comment_userId" value="521203"><input type="hidden" id="commentId" name="commentId" value=""><input type="submit" class="comment_btn" value="提交">&nbsp;&nbsp;<span id="tip_comment" style="color: Red; display: none;"></span></ul></div></form></div>
+    <div class="announce">
+        * 以上用户言论只代表其个人观点，不代表CSDN网站的观点或立场<a name="reply"></a><a name="quote"></a></div>
+</div>
+
+<script type="text/javascript">
+    var fileName = '49522449';
+    var commentscount = 0;
+    var islock = false
+</script>
+<script type="text/javascript" src="./终极 Shell——ZSH - 专注于互联网架构技术，努力成为一名架构师 - 博客频道 - CSDN.NET_files/comment.js"></script>
+    <div id="ad_bot">
+    </div>
+<div id="report_dialog">
+</div>
+
+<div id="d-top" style="bottom:60px;">
+        <a id="quick-reply" class="btn btn-top q-reply" title="快速回复" style="display:none;">
+            <img src="./终极 Shell——ZSH - 专注于互联网架构技术，努力成为一名架构师 - 博客频道 - CSDN.NET_files/blog-icon-reply.png" alt="快速回复">
+        </a>    
+
+    <a id="d-top-a" class="btn btn-top backtop" style="display: none;" title="返回顶部" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_huidaodingbu&#39;])">         
+         <img src="./终极 Shell——ZSH - 专注于互联网架构技术，努力成为一名架构师 - 博客频道 - CSDN.NET_files/top.png" alt="TOP">
+    </a>
+</div>
+<script type="text/javascript">
+    $(function ()
+    {
+        $("#ad_frm_0").height("90px");
+        
+        setTimeout(function(){
+            $("#ad_frm_2").height("200px");
+        },1000);    
+    });
+  
+</script>
+<style type="text/css">
+    .tag_list
+    {
+        background: none repeat scroll 0 0 #FFFFFF;
+        border: 1px solid #D7CBC1;
+        color: #000000;
+        font-size: 12px;
+        line-height: 20px;
+        list-style: none outside none;
+        margin: 10px 2% 0 1%;
+        padding: 1px;
+    }
+    .tag_list h5
+    {
+        background: none repeat scroll 0 0 #E0DBD3;
+        color: #47381C;
+        font-size: 12px;
+        height: 24px;
+        line-height: 24px;
+        padding: 0 5px;
+        margin: 0;
+    }
+    .tag_list h5 a
+    {
+        color: #47381C;
+    }
+    .classify
+    {
+        margin: 10px 0;
+        padding: 4px 12px 8px;
+    }
+    .classify a
+    {
+        margin-right: 20px;
+        white-space: nowrap;
+    }
+</style>
+
+
+<div class="tag_list" style="">
+
+    <h5>
+        <a href="http://www.csdn.net/tag/" target="_blank">核心技术类目</a></h5>
+    <div class="classify">
+<a title="全部主题" href="http://www.csdn.net/tag" target="_blank" onclick="LogClickCount(this,336);">全部主题</a>
+<a title="Hadoop" href="http://g.csdn.net/5272865" target="_blank" onclick="LogClickCount(this,336);">Hadoop</a>
+<a title="AWS" href="http://g.csdn.net/5272866" target="_blank" onclick="LogClickCount(this,336);">AWS</a>
+<a title="移动游戏" href="http://g.csdn.net/5272870" target="_blank" onclick="LogClickCount(this,336);">移动游戏</a>
+<a title="Java" href="http://g.csdn.net/5272871" target="_blank" onclick="LogClickCount(this,336);">Java</a>
+<a title="Android" href="http://g.csdn.net/5272872" target="_blank" onclick="LogClickCount(this,336);">Android</a>
+<a title="iOS" href="http://g.csdn.net/5272873" target="_blank" onclick="LogClickCount(this,336);">iOS</a>
+<a title="Swift" href="http://g.csdn.net/5272868" target="_blank" onclick="LogClickCount(this,336);">Swift</a>
+<a title="智能硬件" href="http://g.csdn.net/5272869" target="_blank" onclick="LogClickCount(this,336);">智能硬件</a>
+<a title="Docker" href="http://g.csdn.net/5272867" target="_blank" onclick="LogClickCount(this,336);">Docker</a>
+<a title="OpenStack" href="http://g.csdn.net/5272925" target="_blank" onclick="LogClickCount(this,336);">OpenStack</a>
+<a title="VPN" href="http://www.csdn.net/tag/vpn" target="_blank" onclick="LogClickCount(this,336);">VPN</a>
+<a title="Spark" href="http://g.csdn.net/5272924" target="_blank" onclick="LogClickCount(this,336);">Spark</a>
+<a title="ERP" href="http://www.csdn.net/tag/erp" target="_blank" onclick="LogClickCount(this,336);">ERP</a>
+<a title="IE10" href="http://www.csdn.net/tag/ie10" target="_blank" onclick="LogClickCount(this,336);">IE10</a>
+<a title="Eclipse" href="http://www.csdn.net/tag/eclipse" target="_blank" onclick="LogClickCount(this,336);">Eclipse</a>
+<a title="CRM" href="http://www.csdn.net/tag/crm" target="_blank" onclick="LogClickCount(this,336);">CRM</a>
+<a title="JavaScript" href="http://www.csdn.net/tag/javascript" target="_blank" onclick="LogClickCount(this,336);">JavaScript</a>
+<a title="数据库" href="http://www.csdn.net/tag/%E6%95%B0%E6%8D%AE%E5%BA%93" target="_blank" onclick="LogClickCount(this,336);">数据库</a>
+<a title="Ubuntu" href="http://www.csdn.net/tag/ubuntu" target="_blank" onclick="LogClickCount(this,336);">Ubuntu</a>
+<a title="NFC" href="http://www.csdn.net/tag/nfc" target="_blank" onclick="LogClickCount(this,336);">NFC</a>
+<a title="WAP" href="http://www.csdn.net/tag/wap" target="_blank" onclick="LogClickCount(this,336);">WAP</a>
+<a title="jQuery" href="http://www.csdn.net/tag/jquery" target="_blank" onclick="LogClickCount(this,336);">jQuery</a>
+<a title="BI" href="http://www.csdn.net/tag/bi" target="_blank" onclick="LogClickCount(this,336);">BI</a>
+<a title="HTML5" href="http://www.csdn.net/tag/html5" target="_blank" onclick="LogClickCount(this,336);">HTML5</a>
+<a title="Spring" href="http://www.csdn.net/tag/spring" target="_blank" onclick="LogClickCount(this,336);">Spring</a>
+<a title="Apache" href="http://www.csdn.net/tag/apache" target="_blank" onclick="LogClickCount(this,336);">Apache</a>
+<a title=".NET" href="http://www.csdn.net/tag/.net" target="_blank" onclick="LogClickCount(this,336);">.NET</a>
+<a title="API" href="http://www.csdn.net/tag/api" target="_blank" onclick="LogClickCount(this,336);">API</a>
+<a title="HTML" href="http://www.csdn.net/tag/html" target="_blank" onclick="LogClickCount(this,336);">HTML</a>
+<a title="SDK" href="http://www.csdn.net/tag/sdk" target="_blank" onclick="LogClickCount(this,336);">SDK</a>
+<a title="IIS" href="http://www.csdn.net/tag/iis" target="_blank" onclick="LogClickCount(this,336);">IIS</a>
+<a title="Fedora" href="http://www.csdn.net/tag/fedora" target="_blank" onclick="LogClickCount(this,336);">Fedora</a>
+<a title="XML" href="http://www.csdn.net/tag/xml" target="_blank" onclick="LogClickCount(this,336);">XML</a>
+<a title="LBS" href="http://www.csdn.net/tag/lbs" target="_blank" onclick="LogClickCount(this,336);">LBS</a>
+<a title="Unity" href="http://www.csdn.net/tag/unity" target="_blank" onclick="LogClickCount(this,336);">Unity</a>
+<a title="Splashtop" href="http://www.csdn.net/tag/splashtop" target="_blank" onclick="LogClickCount(this,336);">Splashtop</a>
+<a title="UML" href="http://www.csdn.net/tag/uml" target="_blank" onclick="LogClickCount(this,336);">UML</a>
+<a title="components" href="http://www.csdn.net/tag/components" target="_blank" onclick="LogClickCount(this,336);">components</a>
+<a title="Windows Mobile" href="http://www.csdn.net/tag/windowsmobile" target="_blank" onclick="LogClickCount(this,336);">Windows Mobile</a>
+<a title="Rails" href="http://www.csdn.net/tag/rails" target="_blank" onclick="LogClickCount(this,336);">Rails</a>
+<a title="QEMU" href="http://www.csdn.net/tag/qemu" target="_blank" onclick="LogClickCount(this,336);">QEMU</a>
+<a title="KDE" href="http://www.csdn.net/tag/kde" target="_blank" onclick="LogClickCount(this,336);">KDE</a>
+<a title="Cassandra" href="http://www.csdn.net/tag/cassandra" target="_blank" onclick="LogClickCount(this,336);">Cassandra</a>
+<a title="CloudStack" href="http://www.csdn.net/tag/cloudstack" target="_blank" onclick="LogClickCount(this,336);">CloudStack</a>
+<a title="FTC" href="http://www.csdn.net/tag/ftc" target="_blank" onclick="LogClickCount(this,336);">FTC</a>
+<a title="coremail" href="http://www.csdn.net/tag/coremail" target="_blank" onclick="LogClickCount(this,336);">coremail</a>
+<a title="OPhone " href="http://www.csdn.net/tag/ophone" target="_blank" onclick="LogClickCount(this,336);">OPhone </a>
+<a title="CouchBase" href="http://www.csdn.net/tag/couchbase" target="_blank" onclick="LogClickCount(this,336);">CouchBase</a>
+<a title="云计算" href="http://www.csdn.net/tag/%E4%BA%91%E8%AE%A1%E7%AE%97" target="_blank" onclick="LogClickCount(this,336);">云计算</a>
+<a title="iOS6" href="http://www.csdn.net/tag/iOS6" target="_blank" onclick="LogClickCount(this,336);">iOS6</a>
+<a title="Rackspace " href="http://www.csdn.net/tag/rackspace" target="_blank" onclick="LogClickCount(this,336);">Rackspace </a>
+<a title="Web App" href="http://www.csdn.net/tag/webapp" target="_blank" onclick="LogClickCount(this,336);">Web App</a>
+<a title="SpringSide" href="http://www.csdn.net/tag/springside" target="_blank" onclick="LogClickCount(this,336);">SpringSide</a>
+<a title="Maemo" href="http://www.csdn.net/tag/maemo" target="_blank" onclick="LogClickCount(this,336);">Maemo</a>
+<a title="Compuware" href="http://www.csdn.net/tag/compuware" target="_blank" onclick="LogClickCount(this,336);">Compuware</a>
+<a title="大数据" href="http://www.csdn.net/tag/%E5%A4%A7%E6%95%B0%E6%8D%AE" target="_blank" onclick="LogClickCount(this,336);">大数据</a>
+<a title="aptech" href="http://www.csdn.net/tag/aptech" target="_blank" onclick="LogClickCount(this,336);">aptech</a>
+<a title="Perl" href="http://www.csdn.net/tag/perl" target="_blank" onclick="LogClickCount(this,336);">Perl</a>
+<a title="Tornado" href="http://www.csdn.net/tag/tornado" target="_blank" onclick="LogClickCount(this,336);">Tornado</a>
+<a title="Ruby" href="http://www.csdn.net/tag/ruby" target="_blank" onclick="LogClickCount(this,336);">Ruby</a>
+<a title="Hibernate" href="http://www.csdn.net/hibernate" target="_blank" onclick="LogClickCount(this,336);">Hibernate</a>
+<a title="ThinkPHP" href="http://www.csdn.net/tag/thinkphp" target="_blank" onclick="LogClickCount(this,336);">ThinkPHP</a>
+<a title="HBase" href="http://www.csdn.net/tag/hbase" target="_blank" onclick="LogClickCount(this,336);">HBase</a>
+<a title="Pure" href="http://www.csdn.net/tag/pure" target="_blank" onclick="LogClickCount(this,336);">Pure</a>
+<a title="Solr" href="http://www.csdn.net/tag/solr" target="_blank" onclick="LogClickCount(this,336);">Solr</a>
+<a title="Angular" href="http://www.csdn.net/tag/angular" target="_blank" onclick="LogClickCount(this,336);">Angular</a>
+<a title="Cloud Foundry" href="http://www.csdn.net/tag/cloudfoundry" target="_blank" onclick="LogClickCount(this,336);">Cloud Foundry</a>
+<a title="Redis" href="http://www.csdn.net/tag/redis" target="_blank" onclick="LogClickCount(this,336);">Redis</a>
+<a title="Scala" href="http://www.csdn.net/tag/scala" target="_blank" onclick="LogClickCount(this,336);">Scala</a>
+<a title="Django" href="http://www.csdn.net/tag/django" target="_blank" onclick="LogClickCount(this,336);">Django</a>
+<a title="Bootstrap" href="http://www.csdn.net/tag/bootstrap" target="_blank" onclick="LogClickCount(this,336);">Bootstrap</a>
+    </div>
+
+</div>
+  <script language="javascript" type="text/javascript">     
+      $(function(){
+              setTimeout(function(){
+                  $.get("/iloveyin/svc/GetTagContent",function(data){
+                      $(".tag_list").html(data).show();
+                  });     
+              });
+          },500);                       
+ </script> 
+
+
+<div id="pop_win" style="display:none ;position: absolute; z-index: 10000; border: 1px solid rgb(220, 220, 220); top: 222.5px; left: 630px; opacity: 1; background: none 0px 0px repeat scroll rgb(255, 255, 255);">
+    
+</div>
+<div id="popup_mask"></div>
+<style>
+    #popup_mask
+    {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        z-index: 9999;
+        left: 0px;
+        top: 0px;
+        opacity: 0.3;
+        filter: alpha(opacity=30);
+        display: none;
+    }
+
+</style>
+
+
+
+
+<script type="text/javascript">
+    $(function(){
+        setTimeout(function(){
+            $(".comment_body:contains('回复')").each(function(index,item){
+                var u=$(this).text().split('：')[0].toString().replace("回复","")
+                var thisComment=$(this);
+                if(u)
+                {
+                    $.getJSON("https://passport.csdn.net/get/nick?callback=?", {users: u}, function(a) {
+                        if(a!=null&&a.data!=null&&a.data.length>0)
+                        {
+                            nick=a.data[0].n; 
+                            if(u!=nick)
+                            {
+                                thisComment.text(thisComment.text().replace(u,nick));  
+                            }
+                        }       
+                    });  
+                }
+            });         
+
+        },200);  
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },5000);
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },10000);
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },15000);
+        
+        setTimeout(function(){
+            $("a img[src='http://js.tongji.linezing.com/stats.gif']").parent().css({"position":"absolute","left":"50%"});
+        },300);
+    });
+
+    function loginbox(){
+        var $logpop=$("#pop_win");
+        $logpop.html('<iframe src="https://passport.csdn.net/account/loginbox?service=http://static.blog.csdn.net/callback.htm" frameborder="0" height="600" width="400" scrolling="no"></iframe>');
+
+        $('#popup_mask').css({
+            opacity: 0.5,
+            width: $( document ).width() + 'px',
+            height:  $( document ).height() + 'px'
+        });
+        $('#popup_mask').css("display","block");
+ 
+        $logpop.css( {
+            top: ($( window ).height() - $logpop.height())/ 2  + $( window 
+       ).scrollTop() + 'px',
+            left:($( window ).width() - $logpop.width())/ 2
+        } );
+ 
+        setTimeout( function () {
+            $logpop.show();
+            $logpop.css( {
+                opacity: 1
+            } );
+        }, 200 );
+ 
+        $('#popup_mask').unbind("click");
+        $('#popup_mask').bind("click", function(){
+            $('#popup_mask').hide();
+            var $clopop = $("#pop_win");
+            $("#common_ask_div_sc").css("display","none");
+            $clopop.css( {
+                opacity: 0
+            } );
+            setTimeout( function () {
+                $clopop.hide();
+            }, 350 );
+            return false;
+        });
+    }   
+
+</script>
+ <script language="javascript" type="text/javascript" src="http://ads.csdn.net/js/async_new.js"></script>      
+
+
+                        <div class="clear">
+                        </div>
+                    </div>                   
+                
+            </div>
+                   
+           <div id="side">
+               
+    <div class="side">
+<div id="panel_Profile" class="panel">
+<ul class="panel_head"><span>个人资料</span></ul>
+<ul class="panel_body profile">
+<div id="blog_userface">
+    <a href="http://my.csdn.net/iloveyin" target="_blank">
+    <img src="./终极 Shell——ZSH - 专注于互联网架构技术，努力成为一名架构师 - 博客频道 - CSDN.NET_files/1_iloveyin.jpg" title="访问我的空间" style="max-width:90%">
+    </a>
+    <br>
+    <span><a href="http://my.csdn.net/iloveyin" class="user_name" target="_blank">iloveyin</a></span>
+</div>
+<div class="interact">
+
+    <a href="javascript:void(0);" class="attent" id="span_add_follow" title="[加关注]"></a>
+
+ <a href="javascript:void(0);" class="letter" title="[发私信]" onclick="window.open(&#39;http://msg.csdn.net/letters/model?receiver=iloveyin&#39;,&#39;_blank&#39;,&#39;height=350,width=700&#39;);_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_sixin&#39;])"></a>  
+</div>
+<div id="blog_medal">
+                <div id="bms_box">
+               </div>
+</div>
+<ul id="blog_rank">
+    <li>访问：<span>775600次</span></li>
+    <li>积分：<span>8603</span> </li>    
+    <li>等级： <span style="position:relative;display:inline-block;z-index:1">
+            <img src="./终极 Shell——ZSH - 专注于互联网架构技术，努力成为一名架构师 - 博客频道 - CSDN.NET_files/blog6.png" alt="" style="vertical-align: middle;" id="leveImg">
+            <div id="smallTittle" style=" position: absolute;  left: -24px;  top: 25px;  text-align: center;  width: 101px;  height: 32px;  background-color: #fff;  line-height: 32px;  border: 2px #DDDDDD solid;  box-shadow: 0px 2px 2px rgba (0,0,0,0.1);  display: none;   z-index: 999;">
+            <div style="left: 42%;  top: -8px;  position: absolute;  width: 0;  height: 0;  border-left: 10px solid transparent;  border-right: 10px solid transparent;  border-bottom: 8px solid #EAEAEA;"></div>
+            积分：8603 </div>
+        </span>  </li>
+    <li>排名：<span>第1499名</span></li>
+</ul>
+<ul id="blog_statistics">
+    <li>原创：<span>201篇</span></li>
+    <li>转载：<span>149篇</span></li>
+    <li>译文：<span>0篇</span></li>
+    <li>评论：<span>47条</span></li>
+</ul>
+</ul>
+</div>
+
+
+<div class="panel" id="panel_Search">
+    <ul class="panel_head"><span>文章搜索</span></ul>
+    <ul class="panel_body">
+        <form id="frmSearch" action="http://so.csdn.net/search" class="form_search" target="_blank">
+        <span><input id="inputSearch" type="text" class="blogsearch" title="请输入关键字"></span>
+        <input id="btnSubmit" type="button" value="搜索" title="search in blog">
+        <input type="hidden" name="q" id="inputQ">
+        <input type="hidden" name="t" value="blog">
+        <a id="btnSearchBlog" target="_blank"></a>
+        </form>
+    </ul>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $("#btnSubmit").click(function () {           
+            search();
+        });
+
+        $("#frmSearch").submit(function () {
+            search();
+            return false;
+        });
+
+        function search()
+        {
+            var url = "http://so.csdn.net/so/search/s.do?q=" + encodeURIComponent($("#inputSearch").val()) + "&u=" + username + "&t=blog";
+            window.location.href = url;
+        }   
+    });
+</script><div id="panel_Category" class="panel">
+<ul class="panel_head"><span>文章分类</span></ul>
+<ul class="panel_body">    
+                 <li>
+                    <a href="http://blog.csdn.net/iloveyin/article/category/908690" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">ROR</a><span>(8)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/iloveyin/article/category/911791" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Linux</a><span>(45)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/iloveyin/article/category/912738" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Html元素分析</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/iloveyin/article/category/913724" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Java</a><span>(38)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/iloveyin/article/category/929317" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">数据库</a><span>(26)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/iloveyin/article/category/931331" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Lucene</a><span>(4)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/iloveyin/article/category/942852" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">NOSQL</a><span>(10)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/iloveyin/article/category/953324" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">系统管理</a><span>(18)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/iloveyin/article/category/956934" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">缓存</a><span>(3)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/iloveyin/article/category/960255" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">杂乱</a><span>(7)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/iloveyin/article/category/1083543" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">搜索</a><span>(6)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/iloveyin/article/category/1113282" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">数据结构</a><span>(14)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/iloveyin/article/category/1114365" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Solr</a><span>(3)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/iloveyin/article/category/1115241" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">面试笔试</a><span>(36)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/iloveyin/article/category/1121164" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">手机</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/iloveyin/article/category/1129210" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Redis</a><span>(5)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/iloveyin/article/category/1130542" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">C++</a><span>(9)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/iloveyin/article/category/1144293" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Python</a><span>(68)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/iloveyin/article/category/1156197" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">互联网经验</a><span>(3)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/iloveyin/article/category/1158232" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">heritrix</a><span>(3)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/iloveyin/article/category/1163609" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">hibernate</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/iloveyin/article/category/1164644" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">hadoop</a><span>(14)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/iloveyin/article/category/1169484" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">ant</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/iloveyin/article/category/1184323" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">DevOps</a><span>(5)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/iloveyin/article/category/1190627" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Puppet</a><span>(5)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/iloveyin/article/category/1191237" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">运维</a><span>(16)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/iloveyin/article/category/1220513" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Django</a><span>(19)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/iloveyin/article/category/1246119" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">算法</a><span>(2)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/iloveyin/article/category/1260247" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">分布式系统架构</a><span>(2)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/iloveyin/article/category/1266993" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">网络编程</a><span>(2)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/iloveyin/article/category/1304330" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">rabbitmq</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/iloveyin/article/category/1356938" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">MongoDB</a><span>(3)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/iloveyin/article/category/1578437" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Android</a><span>(2)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/iloveyin/article/category/2208733" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">摄影技巧</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/iloveyin/article/category/2215471" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">多媒体</a><span>(11)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/iloveyin/article/category/2355593" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">版本管理</a><span>(6)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/iloveyin/article/category/2667619" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Docker</a><span>(4)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/iloveyin/article/category/2682245" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Storm</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/iloveyin/article/category/2726217" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">scrapy</a><span>(7)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/iloveyin/article/category/5597631" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">opencv</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/iloveyin/article/category/5668351" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">ansible</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/iloveyin/article/category/5749971" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">git</a><span>(2)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/iloveyin/article/category/5784297" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">架构经验</a><span>(7)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/iloveyin/article/category/5801391" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">elasticsearch</a><span>(5)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/iloveyin/article/category/5828105" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">ecshop</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/iloveyin/article/category/5996099" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">node.js</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/iloveyin/article/category/6159721" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">spring</a><span>(2)</span>
+                </li>
+</ul>
+</div><div id="panel_Archive" class="panel">
+<ul class="panel_head"><span>文章存档</span></ul>
+<ul class="panel_body">
+<div id="archive_list"><li><a href="http://blog.csdn.net/iloveyin/article/month/2016/04">2016年04月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/iloveyin/article/month/2016/03">2016年03月</a><span>(6)</span></li><li><a href="http://blog.csdn.net/iloveyin/article/month/2016/02">2016年02月</a><span>(4)</span></li><li><a href="http://blog.csdn.net/iloveyin/article/month/2015/12">2015年12月</a><span>(12)</span></li><li><a href="http://blog.csdn.net/iloveyin/article/month/2015/11">2015年11月</a><span>(3)</span></li><span class="hidelist" style="display:none;"><li><a href="http://blog.csdn.net/iloveyin/article/month/2015/10">2015年10月</a><span>(4)</span></li><li><a href="http://blog.csdn.net/iloveyin/article/month/2015/09">2015年09月</a><span>(21)</span></li><li><a href="http://blog.csdn.net/iloveyin/article/month/2015/08">2015年08月</a><span>(2)</span></li><li><a href="http://blog.csdn.net/iloveyin/article/month/2015/07">2015年07月</a><span>(2)</span></li><li><a href="http://blog.csdn.net/iloveyin/article/month/2015/06">2015年06月</a><span>(5)</span></li><li><a href="http://blog.csdn.net/iloveyin/article/month/2015/05">2015年05月</a><span>(3)</span></li><li><a href="http://blog.csdn.net/iloveyin/article/month/2015/04">2015年04月</a><span>(9)</span></li><li><a href="http://blog.csdn.net/iloveyin/article/month/2015/03">2015年03月</a><span>(6)</span></li><li><a href="http://blog.csdn.net/iloveyin/article/month/2015/01">2015年01月</a><span>(7)</span></li><li><a href="http://blog.csdn.net/iloveyin/article/month/2014/12">2014年12月</a><span>(3)</span></li><li><a href="http://blog.csdn.net/iloveyin/article/month/2014/11">2014年11月</a><span>(7)</span></li><li><a href="http://blog.csdn.net/iloveyin/article/month/2014/10">2014年10月</a><span>(9)</span></li><li><a href="http://blog.csdn.net/iloveyin/article/month/2014/09">2014年09月</a><span>(2)</span></li><li><a href="http://blog.csdn.net/iloveyin/article/month/2014/08">2014年08月</a><span>(5)</span></li><li><a href="http://blog.csdn.net/iloveyin/article/month/2014/07">2014年07月</a><span>(2)</span></li><li><a href="http://blog.csdn.net/iloveyin/article/month/2014/06">2014年06月</a><span>(7)</span></li><li><a href="http://blog.csdn.net/iloveyin/article/month/2014/05">2014年05月</a><span>(8)</span></li><li><a href="http://blog.csdn.net/iloveyin/article/month/2014/04">2014年04月</a><span>(7)</span></li><li><a href="http://blog.csdn.net/iloveyin/article/month/2014/03">2014年03月</a><span>(4)</span></li><li><a href="http://blog.csdn.net/iloveyin/article/month/2014/02">2014年02月</a><span>(5)</span></li><li><a href="http://blog.csdn.net/iloveyin/article/month/2014/01">2014年01月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/iloveyin/article/month/2013/12">2013年12月</a><span>(3)</span></li><li><a href="http://blog.csdn.net/iloveyin/article/month/2013/11">2013年11月</a><span>(4)</span></li><li><a href="http://blog.csdn.net/iloveyin/article/month/2013/10">2013年10月</a><span>(6)</span></li><li><a href="http://blog.csdn.net/iloveyin/article/month/2013/09">2013年09月</a><span>(7)</span></li><li><a href="http://blog.csdn.net/iloveyin/article/month/2013/08">2013年08月</a><span>(4)</span></li><li><a href="http://blog.csdn.net/iloveyin/article/month/2013/07">2013年07月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/iloveyin/article/month/2013/06">2013年06月</a><span>(3)</span></li><li><a href="http://blog.csdn.net/iloveyin/article/month/2013/05">2013年05月</a><span>(8)</span></li><li><a href="http://blog.csdn.net/iloveyin/article/month/2013/03">2013年03月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/iloveyin/article/month/2013/02">2013年02月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/iloveyin/article/month/2013/01">2013年01月</a><span>(3)</span></li><li><a href="http://blog.csdn.net/iloveyin/article/month/2012/12">2012年12月</a><span>(3)</span></li><li><a href="http://blog.csdn.net/iloveyin/article/month/2012/11">2012年11月</a><span>(3)</span></li><li><a href="http://blog.csdn.net/iloveyin/article/month/2012/10">2012年10月</a><span>(14)</span></li><li><a href="http://blog.csdn.net/iloveyin/article/month/2012/09">2012年09月</a><span>(10)</span></li><li><a href="http://blog.csdn.net/iloveyin/article/month/2012/08">2012年08月</a><span>(16)</span></li><li><a href="http://blog.csdn.net/iloveyin/article/month/2012/07">2012年07月</a><span>(15)</span></li><li><a href="http://blog.csdn.net/iloveyin/article/month/2012/06">2012年06月</a><span>(5)</span></li><li><a href="http://blog.csdn.net/iloveyin/article/month/2012/05">2012年05月</a><span>(19)</span></li><li><a href="http://blog.csdn.net/iloveyin/article/month/2012/04">2012年04月</a><span>(26)</span></li><li><a href="http://blog.csdn.net/iloveyin/article/month/2012/03">2012年03月</a><span>(12)</span></li><li><a href="http://blog.csdn.net/iloveyin/article/month/2012/01">2012年01月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/iloveyin/article/month/2011/12">2011年12月</a><span>(15)</span></li><li><a href="http://blog.csdn.net/iloveyin/article/month/2011/11">2011年11月</a><span>(13)</span></li><li><a href="http://blog.csdn.net/iloveyin/article/month/2011/10">2011年10月</a><span>(12)</span></li><li><a href="http://blog.csdn.net/iloveyin/article/month/2011/09">2011年09月</a><span>(1)</span></li></span><div id="archive_list_button" class="list_closed">展开</div></div>
+</ul>
+</div>
+<div id="hotarticls" class="panel">
+<ul class="panel_head">
+    <span>       
+阅读排行    </span>
+</ul>
+
+<ul class="panel_body itemlist">
+<li>
+<a href="http://blog.csdn.net/iloveyin/article/details/21444613" title="Python Requests快速入门">Python Requests快速入门</a><span>(104201)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/iloveyin/article/details/38539933" title="Git merge和git branch 分支与合并">Git merge和git branch 分支与合并</a><span>(33132)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/iloveyin/article/details/38512793" title="Linux netstat命令详解">Linux netstat命令详解</a><span>(29783)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/iloveyin/article/details/17097151" title="pip和easy_install使用方式">pip和easy_install使用方式</a><span>(25024)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/iloveyin/article/details/8423823" title="Python中urllib2总结">Python中urllib2总结</a><span>(15003)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/iloveyin/article/details/41309679" title="Scrapy系列教程（3）------Spider（爬虫核心，定义链接关系和网页信息抽取）">Scrapy系列教程（3）------Spider（爬虫核心，定义链接关系和网页信息抽取）</a><span>(14648)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/iloveyin/article/details/40107345" title="gerrit使用总结">gerrit使用总结</a><span>(11862)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/iloveyin/article/details/46982023" title="ansible常用模块用法">ansible常用模块用法</a><span>(9176)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/iloveyin/article/details/7067345" title="CentOS下以RPM方式安装MySQL5.5">CentOS下以RPM方式安装MySQL5.5</a><span>(9003)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/iloveyin/article/details/45335885" title="python datetime模块详解">python datetime模块详解</a><span>(8069)</span>
+</li>
+</ul>
+</div>
+<div id="hotarticls2" class="panel">
+<ul class="panel_head"><span>评论排行</span></ul>
+<ul class="panel_body itemlist">
+<li>
+<a href="http://blog.csdn.net/iloveyin/article/details/21444613" title="Python Requests快速入门">Python Requests快速入门</a><span>(7)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/iloveyin/article/details/41309679" title="Scrapy系列教程（3）------Spider（爬虫核心，定义链接关系和网页信息抽取）">Scrapy系列教程（3）------Spider（爬虫核心，定义链接关系和网页信息抽取）</a><span>(4)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/iloveyin/article/details/44625369" title="django-pagination分页">django-pagination分页</a><span>(3)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/iloveyin/article/details/38512793" title="Linux netstat命令详解">Linux netstat命令详解</a><span>(3)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/iloveyin/article/details/8045528" title="百度2013校园招聘笔试题(含自己整理的答案)">百度2013校园招聘笔试题(含自己整理的答案)</a><span>(2)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/iloveyin/article/details/7105181" title="Redis键值设计">Redis键值设计</a><span>(2)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/iloveyin/article/details/39998651" title="腾讯视频解析接口">腾讯视频解析接口</a><span>(2)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/iloveyin/article/details/7400278" title="JAVA高性能编程">JAVA高性能编程</a><span>(2)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/iloveyin/article/details/38754231" title="Python基础语法">Python基础语法</a><span>(2)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/iloveyin/article/details/28264027" title="Hadoop webHDFS设置和使用说明">Hadoop webHDFS设置和使用说明</a><span>(2)</span>
+</li>
+</ul>
+</div>
+<div id="homepageArticles" class="panel tracking-ad" data-mod="popu_4">
+<ul class="panel_head"><span>推荐文章</span></ul>
+<ul class="panel_body" id="ad_commend">
+<ul>
+<li><a href="http://blog.csdn.net/phodal/article/details/52145386" target="_blank">* 致JavaScript也将征服的物联网世界</a></li>
+<li><a href="http://blog.csdn.net/ioio_jy/article/details/52124726" target="_blank">* 从苏宁电器到卡巴斯基：难忘的三年硕士时光</a></li>
+<li><a href="http://blog.csdn.net/u013970991/article/details/52120005" target="_blank">* 作为一名基层管理者如何利用情商管理自己和团队（一）</a></li>
+<li><a href="http://blog.csdn.net/zhangphil/article/details/52130212" target="_blank">* Android CircleImageView圆形ImageView</a></li>
+<li><a href="http://blog.csdn.net/poem_qianmo/article/details/52144086" target="_blank">* 高质量代码的命名法则</a></li>
+
+
+</ul></ul>
+</div>
+
+
+<div id="newcomments" class="panel">
+<ul class="panel_head"><span>最新评论</span></ul>
+<ul class="panel_body itemlist">
+    <li>
+   
+         <a href="http://blog.csdn.net/iloveyin/article/details/39998651#comments">腾讯视频解析接口</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/qq_35890537" class="user_name">qq_35890537</a>:
+史上最稳定的万能视频解析接口QQ群：582520547网站http://jiexi.jiuli8.c...
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/iloveyin/article/details/28264027#comments">Hadoop webHDFS设置和使用说明</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/u012965373" class="user_name">杨鑫newlfe</a>:
+@u013693144:直接ip:50070可以看到内容啊.
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/iloveyin/article/details/44630989#comments">快速给django admin后台加入bootstrap</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/chr23899" class="user_name">chr23899</a>:
+为啥我得出现了ImportErrror: No module named bootstrap3
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/iloveyin/article/details/44630989#comments">快速给django admin后台加入bootstrap</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/chr23899" class="user_name">chr23899</a>:
+https://riccardo.forina.me/bootstrap-your-django-a...
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/iloveyin/article/details/41309679#comments">Scrapy系列教程（3）------Spider（爬虫核心，定义链接关系和网页信息抽取）</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/qq_35462093" class="user_name">qq_35462093</a>:
+对于post请求的网页怎么传入post参数呢？return 这个方法怎么用呢？
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/iloveyin/article/details/51074388#comments">解决mac osx下pip安装ipython权限的问题</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/Cindyyyxy" class="user_name">luna_4</a>:
+哎呦感谢= =帮大忙了
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/iloveyin/article/details/21444613#comments">Python Requests快速入门</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/lixiaoxiao6" class="user_name">lixiaoxiao6</a>:
+写的很好，谢谢楼主
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/iloveyin/article/details/21444613#comments">Python Requests快速入门</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/zhousa1" class="user_name">zhousa1</a>:
+请教大神一个棘手问题：如何用requests.get('http://999.jz79.com/Lo...
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/iloveyin/article/details/50345503#comments">JVM理论与实践【JVM参数调优】</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/lipeng_bigdata" class="user_name">辰辰爸的技术博客</a>:
+不错，有用！
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/iloveyin/article/details/7400278#comments">JAVA高性能编程</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/lipeng_bigdata" class="user_name">辰辰爸的技术博客</a>:
+收藏了！
+    </p>
+    </li>
+</ul>
+</div>
+    </div>
+    <div class="clear">
+    </div>
+
+
+                   <!-- 广告位开始 --> 
+                    <ins data-revive-zoneid="190" data-revive-id="8c38e720de1c90a6f6ff52f3f89c4d57"></ins> 
+                    <!-- 广告位结束 -->
+
+           </div>   
+
+            <div class="clear">
+            </div>
+        </div>
+
+        
+
+<script type="text/javascript" src="./终极 Shell——ZSH - 专注于互联网架构技术，努力成为一名架构师 - 博客频道 - CSDN.NET_files/cnick.js"></script>
+<script type="text/javascript" src="./终极 Shell——ZSH - 专注于互联网架构技术，努力成为一名架构师 - 博客频道 - CSDN.NET_files/newblog.min.js"></script>
+
+
+<script type="text/javascript" src="./终极 Shell——ZSH - 专注于互联网架构技术，努力成为一名架构师 - 博客频道 - CSDN.NET_files/showblogmedal.ashx"></script>
+<script type="text/javascript" src="./终极 Shell——ZSH - 专注于互联网架构技术，努力成为一名架构师 - 博客频道 - CSDN.NET_files/JavaScript1.js"></script><link rel="stylesheet" type="text/css" href="./终极 Shell——ZSH - 专注于互联网架构技术，努力成为一名架构师 - 博客频道 - CSDN.NET_files/pub_footer_2014.css"><div class="pub_fo"><div id="pub_footerall" class="pub_footer_new"><dl><dt></dt> <dd class="foot_sub_menu"><a href="http://www.csdn.net/company/about.html" target="_blank">公司简介</a><span>|</span><a href="http://www.csdn.net/company/recruit.html" target="_blank">招贤纳士</a><span>|</span><a href="http://www.csdn.net/company/marketing.html" target="_blank">广告服务</a><span>|</span><a href="http://www.csdn.net/company/account.html" target="_blank">银行汇款帐号</a><span>|</span><a href="http://www.csdn.net/company/contact.html" target="_blank">联系方式</a><span>|</span><a href="http://www.csdn.net/company/statement.html" target="_blank">版权声明</a><span>|</span><a href="http://www.csdn.net/company/layer.html" target="_blank">法律顾问</a><span>|</span><a href="mailto:webmaster@csdn.net">问题报告</a><span>|</span><a target="_blank" href="http://www.csdn.net/friendlink.html">合作伙伴</a><span>|</span><a href="http://bbs.csdn.net/forums/Service" target="_blank">论坛反馈</a></dd><dd class="foot_contact"><a href="javascript:void(0);" target="_blank" class="qq">网站客服</a><a href="http://wpa.qq.com/msgrd?v=3&amp;uin=2251809102&amp;site=qq&amp;menu=yes" target="_blank" class="qq">杂志客服</a><a href="http://e.weibo.com/csdnsupport/profile" target="_blank" class="weibo">微博客服</a><a href="mailto:webmaster@csdn.net" class="email" title="联系邮箱">webmaster@csdn.net</a><span class="phone" title="服务热线">400-600-2320</span><span class="interval">|</span><span>北京创新乐知信息技术有限公司 版权所有</span><span class="interval">|</span><span>江苏乐知网络技术有限公司 提供商务支持</span></dd><dd class="foot_copyright"><span>京&nbsp;ICP&nbsp;证&nbsp;09002463&nbsp;号</span><span class="interval">|</span><span>Copyright © 1999-2014, CSDN.NET, All Rights Reserved&nbsp;</span><a href="http://www.hd315.gov.cn/beian/view.asp?bianhao=010202001032100010" target="_blank"><img src="./终极 Shell——ZSH - 专注于互联网架构技术，努力成为一名架构师 - 博客频道 - CSDN.NET_files/gongshang_logos.gif" alt="GongshangLogo" title=""></a></dd></dl></div></div><div id="note1" class="csdn_note" style="display:none; position:absolute; z-index:9999; width:440px">  <span class="notice_top_arrow"><span class="inner"></span></span>  <div class="box"></div></div><div class="csdn_notice_tip" style="position: absolute; z-index: 9990; width: 170px; left: -72px; top: 9144px; display: block;">  <iframe src="./终极 Shell——ZSH - 专注于互联网架构技术，努力成为一名架构师 - 博客频道 - CSDN.NET_files/saved_resource(2).html" frameborder="0" scrolling="no" style="z-index:-1;position:absolute;top:0;left:0;width:100%;height:100%;background:transparent"></iframe>  <div class="tip_text">您有<strong>1</strong>条新通知</div>  <a href="javascript:void 0" class="close2"></a></div><script id="noticeScript" type="text/javascript" btnid="header_notice_num" wrapid="note1" count="5" subcount="5" src="./终极 Shell——ZSH - 专注于互联网架构技术，努力成为一名架构师 - 博客频道 - CSDN.NET_files/notify.js"></script>
+
+<script type="text/javascript">document.write("<img src=http://counter.csdn.net/pv.aspx?id=24 border=0 width=0 height=0>");</script><img src="./终极 Shell——ZSH - 专注于互联网架构技术，努力成为一名架构师 - 博客频道 - CSDN.NET_files/pv.aspx" border="0" width="0" height="0">
+<script type="text/javascript" src="./终极 Shell——ZSH - 专注于互联网架构技术，努力成为一名架构师 - 博客频道 - CSDN.NET_files/counter.js"></script><script type="text/javascript" charset="UTF-8" src="http://message.csdn.net/msg.popup.js"></script>
+<script type="text/javascript" src="http://ad.csdn.net/scripts/ad-blog.js"></script>
+<script type="text/javascript">
+    $(function () {
+        function __get_code_toolbar(snippet_id) {
+            return $("<span class='tracking-ad' data-mod='popu_167'><a href='https://code.csdn.net/snippets/"
+                    + snippet_id
+                    + "' target='_blank' title='在CODE上查看代码片'  style='text-indent:0;'><img src='https://code.csdn.net/assets/CODE_ico.png' width=12 height=12 alt='在CODE上查看代码片' style='position:relative;top:1px;left:2px;'/></a></span>"
+                    + "<span class='tracking-ad' data-mod='popu_170'><a href='https://code.csdn.net/snippets/"
+                    + snippet_id
+                    + "/fork' target='_blank' title='派生到我的代码片' style='text-indent:0;'><img src='https://code.csdn.net/assets/ico_fork.svg' width=12 height=12 alt='派生到我的代码片' style='position:relative;top:2px;left:2px;'/></a></span>");
+        }
+        
+        $("[code_snippet_id]").each(function () {
+            __s_id = $(this).attr("code_snippet_id");
+            if (__s_id != null && __s_id != "" && __s_id != 0 && parseInt(__s_id) > 70020) {
+                __code_tool = __get_code_toolbar(__s_id);
+                $(this).prev().find(".tools").append(__code_tool);
+            }
+        });
+
+        $(".bar").show();
+    });
+</script>
+
+
+
+
+    </div><input type="hidden" id="aa_g_data_ids">
+      <!--new top-->
+    
+    <script id="csdn-toolbar-id" btnid="header_notice_num" wrapid="note1" count="5" subcount="5" type="text/javascript" src="./终极 Shell——ZSH - 专注于互联网架构技术，努力成为一名架构师 - 博客频道 - CSDN.NET_files/toolbar.js"></script>
+     <!--new top-->
+   
+    <link href="./终极 Shell——ZSH - 专注于互联网架构技术，努力成为一名架构师 - 博客频道 - CSDN.NET_files/ask_float_block.css" type="text/css" rel="stylesheet">
+    <script language="JavaScript" type="text/javascript" src="./终极 Shell——ZSH - 专注于互联网架构技术，努力成为一名架构师 - 博客频道 - CSDN.NET_files/wmd.js"></script>
+    <script language="JavaScript" type="text/javascript" src="./终极 Shell——ZSH - 专注于互联网架构技术，努力成为一名架构师 - 博客频道 - CSDN.NET_files/showdown.js"></script>
+    <script language="JavaScript" type="text/javascript" src="./终极 Shell——ZSH - 专注于互联网架构技术，努力成为一名架构师 - 博客频道 - CSDN.NET_files/prettify.js"></script>
+    <script language="JavaScript" type="text/javascript" src="./终极 Shell——ZSH - 专注于互联网架构技术，努力成为一名架构师 - 博客频道 - CSDN.NET_files/ask_float_block.js"></script>
+   
+
+  <div id="a52b5334d" style="width: 1px; height: 1px; display: none;">
+                    <script id="adJs52b5334" src="http://ads.csdn.net/js/opt/52b5334.js?t=0.1436329042447826"></script>
+                    <script>document.getElementById("adJs52b5334").src = "http://ads.csdn.net/js/opt/52b5334.js?t=" + Math.random();</script>
+   </div>
+
+    <link rel="stylesheet" href="./终极 Shell——ZSH - 专注于互联网架构技术，努力成为一名架构师 - 博客频道 - CSDN.NET_files/blog_code.css">
+    <script type="text/javascript" src="./终极 Shell——ZSH - 专注于互联网架构技术，努力成为一名架构师 - 博客频道 - CSDN.NET_files/saveToCode.js"></script>
+      <script type="text/javascript" src="http://csdnimg.cn/rabbit/tracking-ad/main.js?75eacd8"></script>
+
+   
+ <div id="tag-suggest-pop">
+  <div class="relative">
+    <div class="close"></div>
+    <div class="content"></div>
+  </div>
+</div><link rel="stylesheet" type="text/css" media="screen" href="./终极 Shell——ZSH - 专注于互联网架构技术，努力成为一名架构师 - 博客频道 - CSDN.NET_files/ask_float_fonts_css-6b30a53970eb5c3a2a045e3df585b475.css"><div data-mod="popu_64" class="csdn-tracking-statistics" chg-blk="0"><a id="com-quick-reply" title="快速回复" style="top:406px"></a><a id="com-d-top-a" style="top: 444px; display: inline;" title="返回顶部" onclick=""></a> </div><div class="pop_edit ask_second comm_ask_second"><h3>提问</h3><span class="ask_float_span">您的问题将会被发布在“<a class="ask_float_channel" href="http://ask.csdn.net/" target="_blank" style="cursor:pointer">技术问答</a>”频道</span><a href="http://blog.csdn.net/iloveyin/article/details/49522449#" nodetype="close" class="close">×</a><div class="context"><div class="err_div"><span class="err_ico"></span><span class="err_txt">该问题已存在，请勿重复提问</span></div><div class="input_div"><input id="askInputSecond" type="text" style="font-size:14px;" placeholder="问题标题"></div><div class="cm_box"><div class="cm_dialog"></div> <div class="pop_cm cm_add_link"><input type="text" placeholder="链接内容" id="af_cm_link_txt"><input type="text" placeholder="链接地址" id="af_cm_link_url"><input type="text" placeholder="链接提示" id="af_cm_link_tit"><div class="text-right"><span class="btn btn-default btn-sm" id="add_link_btn">插入链接</span> </div> </div><div class="pop_cm cm_add_img"><div class="nav-tabs"><a class="img_tab active" href="http://blog.csdn.net/iloveyin/article/details/49522449#tab_upload">本地上传</a><a class="img_tab" href="http://blog.csdn.net/iloveyin/article/details/49522449#tab_weburl">网络图片</a></div><div class="tab_panel active" id="tab_upload"><div class="set_img"><iframe src="./终极 Shell——ZSH - 专注于互联网架构技术，努力成为一名架构师 - 博客频道 - CSDN.NET_files/upload.html"></iframe></div></div><div class="tab_panel" id="tab_weburl"><input type="text" placeholder="图片地址" id="af_cm_img_url"><input type="text" placeholder="图片说明" id="af_cm_img_alt"><div class="text-right"><span class="btn btn-default btn-sm" id="add_img_btn">插入图片</span> </div></div> </div></div> <textarea id="editor_all" rows="8" style="display: none;"></textarea><div class="editor-toolbar"><i class="separator">|</i><a class="icon-headline" title="标题一（Ctrl+Alt+1）"></a><a class="icon-heading" title="标题二（Ctrl+Alt+2）"></a><a class="icon-bold" title="粗体（Ctrl+B）"></a><a class="icon-italic" title="斜体（Ctrl+I）"></a><i class="separator">|</i><a class="icon-quote-left" title="引用（Ctrl+’）"></a><a class="icon-code" title="插入代码片（Ctrl+,）"></a><a class="icon-list-ul" title="无序列表（Ctrl+L）"></a><a class="icon-list-ol" title="有序列表（Ctrl+Alt+L）"></a><i class="separator">|</i><a class="icon-link" title="添加链接（Ctrl+K）"></a><a class="icon-picture" title="添加图片（Ctrl+Alt+I）"></a><i class="separator">|</i><a class="icon-reply" title="撤退（Ctrl+Z）"></a><a class="icon-share-alt" title="前进（Ctrl+Shift+Z）"></a><i class="separator">|</i><a class="icon-info" href="http://ask.csdn.net/pages/markdown" target="_blank" title="markdown语法参考"></a><a class="icon-preview" title="预览"></a><i class="separator">|</i></div><div class="CodeMirror cm-s-paper CodeMirror-focused"><div style="overflow: hidden; position: relative; width: 3px; height: 0px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" style="position: absolute; padding: 0px; width: 1000px; height: 1em; outline: none; font-size: 4px;" tabindex="0"></textarea></div><div class="CodeMirror-hscrollbar"><div style="height: 1px;"></div></div><div class="CodeMirror-vscrollbar"><div style="width: 1px;"></div></div><div class="CodeMirror-scrollbar-filler"></div><div class="CodeMirror-gutter-filler"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="min-width: 33px;"><div style="position: relative;"><div class="CodeMirror-lines"><div style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre>&nbsp;<span style="display: inline-block; width: 1px; margin-right: -1px;">&nbsp;</span></pre></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code"></div><div class="CodeMirror-cursor" style="visibility: hidden;">&nbsp;</div><div class="CodeMirror-cursor CodeMirror-secondarycursor" style="visibility: hidden;">&nbsp;</div></div></div></div></div><div style="position: absolute; height: 30px; width: 1px;"></div><div class="CodeMirror-gutters" style="display: none;"></div></div></div><div class="editor-statusbar"><span class="lines">0</span><span class="words">0</span><span class="cursor">0:0</span></div><div class="div_tags clearfix"><div id="divSearchTags" class="tags_con"><input type="text"></div><input type="hidden" name="txtSearchTags"></div><div id="ask2_tagRecomm_div" class="drt_tagRecomm tracking-ad" data-mod="popu_73"><span class="drt_tit">推荐标签：</span></div></div><div class="success"><div class="left_area"><input id="chk_cb" type="checkbox"><span class="wyxs">我要悬赏</span><input id="cb_num" class="cb_num" readonly="true"><span class="phib_rii"><span> 币</span></span></div><a href="http://blog.csdn.net/iloveyin/article/details/49522449#" nodetype="cancel" class="cancel">取消</a><a href="http://blog.csdn.net/iloveyin/article/details/49522449#" nodetype="ok" class="ok">发布</a></div></div><div id="common_ask_div_sc" class="searchContainer"><div class="sTitle">可能存在类似的问题：</div><div class="sFooter"><a class="sFirstNewAsk">我想提一个新问题</a></div></div><div id="mask_code"></div><div class="gist_edit"><div class="save_snippets clearfix"><div class="tit"><h3>保存代码片</h3><span>整理和分享保存的代码片，请访问<a href="https://code.csdn.net/snippets_manage" target="_blank">代码笔记</a></span></div><div class="con_form"><ul class="gist_edit_list clearfix"><li><span class="red">*</span><span class="txt">标题</span><input id="form_title" class="form-input" placeholder="终极 Shell——ZSH" type="text"></li><li><span class="red">*</span><span class="txt">描述</span><textarea id="form-textarea" class="form-textarea" placeholder="终极 Shell——ZSH： http://blog.csdn.net/iloveyin/article/details/49522449"></textarea></li><li><span class="red">&nbsp;</span><span class="txt">标签</span><div id="divSearchTags"><input id="insertTag" class="insertTag" placeholder="请输入标签，按Enter生成(最多5项)" type="text" value="" name="insertTag" maxlength="21" style="color: rgb(51, 51, 51);"><input id="OrganTag" class="OrganTag" type="hidden" name="OrganTag" value=""><input id="OldOrganTag" class="OldOrganTag" type="hidden" name="OldOrganTag" value=""><input type="hidden" name="txtSearchTags"></div></li></ul></div><div class="bottom-bar"><a href="javascript:;" class="btn-submit btn-cancel">取消</a><span class="tracking-ad" data-mod="popu_250"><a class="btn-submit btn-confirm" href="javascript:;">确定</a></span></div></div></div><div style="position: static; width: 0px; height: 0px; border: none; padding: 0px; margin: 0px;"><div id="trans-tooltip"><div id="tip-left-top" style="background: url(&quot;chrome-extension://ikkbfngojljohpekonpldkamedehakni/imgs/map/tip-left-top.png&quot;);"></div><div id="tip-top" style="background: url(&quot;chrome-extension://ikkbfngojljohpekonpldkamedehakni/imgs/map/tip-top.png&quot;) repeat-x;"></div><div id="tip-right-top" style="background: url(&quot;chrome-extension://ikkbfngojljohpekonpldkamedehakni/imgs/map/tip-right-top.png&quot;);"></div><div id="tip-right" style="background: url(&quot;chrome-extension://ikkbfngojljohpekonpldkamedehakni/imgs/map/tip-right.png&quot;) repeat-y;"></div><div id="tip-right-bottom" style="background: url(&quot;chrome-extension://ikkbfngojljohpekonpldkamedehakni/imgs/map/tip-right-bottom.png&quot;);"></div><div id="tip-bottom" style="background: url(&quot;chrome-extension://ikkbfngojljohpekonpldkamedehakni/imgs/map/tip-bottom.png&quot;) repeat-x;"></div><div id="tip-left-bottom" style="background: url(&quot;chrome-extension://ikkbfngojljohpekonpldkamedehakni/imgs/map/tip-left-bottom.png&quot;);"></div><div id="tip-left" style="background: url(&quot;chrome-extension://ikkbfngojljohpekonpldkamedehakni/imgs/map/tip-left.png&quot;);"></div><div id="trans-content"></div></div><div id="tip-arrow-bottom" style="background: url(&quot;chrome-extension://ikkbfngojljohpekonpldkamedehakni/imgs/map/tip-arrow-bottom.png&quot;);"></div><div id="tip-arrow-top" style="background: url(&quot;chrome-extension://ikkbfngojljohpekonpldkamedehakni/imgs/map/tip-arrow-top.png&quot;);"></div></div><div style="position: absolute; width: 0px; height: 0px; overflow: hidden; padding: 0px; border: 0px; margin: 0px;"><div id="MathJax_Font_Test" style="position: absolute; visibility: hidden; top: 0px; left: 0px; width: auto; padding: 0px; border: 0px; margin: 0px; white-space: nowrap; text-align: left; text-indent: 0px; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; font-size: 40px; font-weight: normal; font-style: normal; font-family: MathJax_Size4, sans-serif;"></div></div><div id="shanbay_extension_result" class="shanbay_extension_result"><div id="shanbay_extension_result_shanbaydict" class="shanbay_extension_result_engine"><div id="shanbay_extension_result_shanbaydict_caption" class="shanbay_extension_result_caption"></div><div id="shanbay_extension_result_shanbaydict_content" class="shanbay_extension_result_content"></div></div><div id="shanbay_extension_result_googletran" class="shanbay_extension_result_engine"><div id="shanbay_extension_result_googletran_caption" class="shanbay_extension_result_caption"></div><div id="shanbay_extension_result_googletran_content" class="shanbay_extension_result_content"></div></div><div id="shanbay_extension_result_wikizh" class="shanbay_extension_result_engine"><div id="shanbay_extension_result_wikizh_caption" class="shanbay_extension_result_caption"></div><div id="shanbay_extension_result_wikizh_content" class="shanbay_extension_result_content"></div></div><div id="shanbay_extension_result_wikien" class="shanbay_extension_result_engine"><div id="shanbay_extension_result_wikien_caption" class="shanbay_extension_result_caption"></div><div id="shanbay_extension_result_wikien_content" class="shanbay_extension_result_content"></div></div></div></body></html>
